@@ -1,0 +1,45 @@
+/* Soft Orange Utility */
+.bg-soft-orange {
+    background-color: #fff3e0;
+}
+
+.text-orange {
+    color: #ff9800;
+}
+
+/* Existing Animations from previous file, adding new float variations */
+.animate-float-slow {
+    animation: floatVertical 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+    animation: floatVertical 7s ease-in-out infinite 2s;
+}
+
+.animate-float-reverse {
+    animation: floatVerticalReverse 8s ease-in-out infinite 1s;
+}
+
+@keyframes floatVertical {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-6deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(-4deg);
+    }
+}
+
+@keyframes floatVerticalReverse {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(6deg);
+    }
+
+    50% {
+        transform: translateY(15px) rotate(4deg);
+    }
+}

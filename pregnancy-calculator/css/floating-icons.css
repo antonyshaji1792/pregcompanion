@@ -1,0 +1,132 @@
+/* 3D Floating Icons Container */
+.floating-icons-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+    perspective: 1200px;
+}
+
+/* Base Icon Style */
+.float-icon {
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+    filter: drop-shadow(0 15px 30px rgba(244, 143, 177, 0.2));
+    will-change: transform, opacity;
+}
+
+/* Specific Icon Durations & Delays for Randomness */
+.float-icon:nth-child(1) {
+    left: 5%;
+    animation: woggleFloat1 22s linear infinite;
+    font-size: 2.8rem;
+}
+
+.float-icon:nth-child(2) {
+    left: 15%;
+    animation: woggleFloat2 28s linear infinite;
+    font-size: 2.2rem;
+}
+
+.float-icon:nth-child(3) {
+    left: 30%;
+    animation: woggleFloat1 20s linear infinite;
+    font-size: 3.5rem;
+}
+
+.float-icon:nth-child(4) {
+    left: 50%;
+    animation: woggleFloat2 25s linear infinite;
+    font-size: 2.6rem;
+}
+
+.float-icon:nth-child(5) {
+    left: 65%;
+    animation: woggleFloat1 30s linear infinite;
+    font-size: 3.2rem;
+}
+
+.float-icon:nth-child(6) {
+    left: 80%;
+    animation: woggleFloat2 24s linear infinite;
+    font-size: 2.4rem;
+}
+
+.float-icon:nth-child(7) {
+    left: 90%;
+    animation: woggleFloat1 27s linear infinite;
+    font-size: 1.8rem;
+}
+
+.float-icon:nth-child(8) {
+    left: 40%;
+    animation: woggleFloat2 23s linear infinite;
+    font-size: 3rem;
+}
+
+/* 3D Woggle Animations */
+@keyframes woggleFloat1 {
+    0% {
+        transform: translate3d(0, 110vh, -100px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.7);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.4;
+    }
+
+    30% {
+        transform: translate3d(40px, 80vh, 50px) rotateX(25deg) rotateY(-15deg) rotateZ(10deg) scale(0.9);
+    }
+
+    60% {
+        transform: translate3d(-60px, 40vh, 150px) rotateX(-20deg) rotateY(25deg) rotateZ(-15deg) scale(1.1);
+    }
+
+    90% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translate3d(0, -15vh, 200px) rotateX(45deg) rotateY(-45deg) rotateZ(30deg) scale(1.3);
+        opacity: 0;
+    }
+}
+
+@keyframes woggleFloat2 {
+    0% {
+        transform: translate3d(0, 115vh, -150px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.8);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.35;
+    }
+
+    40% {
+        transform: translate3d(-50px, 75vh, 0px) rotateX(-15deg) rotateY(20deg) rotateZ(-20deg) scale(1);
+    }
+
+    75% {
+        transform: translate3d(30px, 30vh, 100px) rotateX(10deg) rotateY(-30deg) rotateZ(15deg) scale(1.1);
+    }
+
+    85% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform: translate3d(-10px, -20vh, 180px) rotateX(-40deg) rotateY(35deg) rotateZ(-40deg) scale(1.2);
+        opacity: 0;
+    }
+}

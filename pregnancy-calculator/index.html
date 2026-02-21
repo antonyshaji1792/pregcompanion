@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PregCompanion | Modern Maternal Health</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/premium-theme.css">
+    <link rel="stylesheet" href="css/floating-icons.css">
+</head>
+
+<body>
+    <!-- Background Assets -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Floating Icons Background -->
+    <div class="floating-icons-container">
+        <!-- Using images as "3D" elements (or emoji/SVGs styled nicely) -->
+        <span class="float-icon">🍼</span>
+        <span class="float-icon">🧸</span>
+        <span class="float-icon">👶</span>
+        <span class="float-icon">🧷</span>
+        <span class="float-icon">🦒</span>
+        <span class="float-icon">🤱</span>
+        <span class="float-icon">👣</span>
+        <span class="float-icon">⭐</span>
+    </div>
+
+    <!-- Global Loader -->
+    <div id="global-loader" class="loader-overlay d-flex">
+        <div class="loader-content">
+            <div class="loader-circle"></div>
+            <div class="loader-text">PregCompanion</div>
+        </div>
+    </div>
+
+    <!-- Top Navigation Bar (Premium Upgrade) -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-premium px-3 d-none" id="mainNavbar">
+        <div class="container-fluid container-nav max-width-1200 px-lg-5">
+            <a class="navbar-brand poppins fw-bold site-nav-link d-flex align-items-center gap-2" href="#"
+                data-page="home">
+                <div class="logo-icon-sm">P</div>
+                <span class="fs-4 d-none d-sm-inline">PregCompanion</span>
+            </a>
+
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent">
+                <i class="bi bi-grid-fill fs-3"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4">
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold site-nav-link active" href="#" data-page="home">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold site-nav-link" href="#" data-page="calendar">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold site-nav-link" href="#" data-page="tracker">Trackers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold site-nav-link" href="#" data-page="insights">Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold site-nav-link" href="#" data-page="resources">Knowledge</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold site-nav-link" href="#" data-page="profile">Profile</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    <button class="theme-toggle" title="Toggle Theme">
+                        <i class="bi bi-moon-stars-fill"></i>
+                    </button>
+                    <button class="btn btn-premium btn-sm px-4"
+                        onclick="if(confirm('Log out and clear session?')){localStorage.clear(); location.reload();}">
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Onboarding Overlay -->
+    <div id="onboarding-host" class="d-none"
+        style="position:fixed;inset:0;z-index:2000;background:var(--bg-color);overflow-y:auto;">
+
+        <!-- Landing Nav (Always Visible) -->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-premium scrolled" style="z-index: 2010;">
+            <div class="container">
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#" onclick="obNext(1)">
+                    <div class="logo-icon-sm" style="background: var(--primary-gradient); color: white;">P</div>
+                    <span class="fs-4 poppins tracking-tight">PregCompanion</span>
+                </a>
+
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#landingNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="landingNavbar">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" href="javascript:void(0)"
+                                onclick="obSelectStageAndNext('planning')">Planning</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" href="javascript:void(0)"
+                                onclick="obSelectStageAndNext('pregnancy')">Pregnancy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" href="javascript:void(0)"
+                                onclick="obSelectStageAndNext('postpartum')">Postpartum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" href="#features-section">Features</a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <button onclick="obNext(2)"
+                            class="btn btn-link text-decoration-none fw-bold text-dark p-0 me-2">Log In</button>
+                        <button onclick="obNext(2)" class="btn btn-premium btn-sm px-4">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Step 1: Landing Page (Full Width) -->
+        <div class="onboarding-step w-100" id="ob-step-1">
+
+
+
+            <!-- Hero Section (Split Layout Carousel) -->
+            <header class="hero-wrapper site-page"
+                style="min-height:95vh; padding-top: 60px; display: flex; align-items: center; background: white;">
+
+                <div id="obHeroCarousel" class="carousel slide carousel-fade w-100 h-100" data-bs-ride="carousel">
+                    <div class="carousel-indicators" style="bottom: -10px;">
+                        <button type="button" data-bs-target="#obHeroCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true"
+                            style="background-color: #f06292; width: 12px; height: 12px; border-radius: 50%; margin: 0 6px;"></button>
+                        <button type="button" data-bs-target="#obHeroCarousel" data-bs-slide-to="1"
+                            style="background-color: #42a5f5; width: 12px; height: 12px; border-radius: 50%; margin: 0 6px;"></button>
+                        <button type="button" data-bs-target="#obHeroCarousel" data-bs-slide-to="2"
+                            style="background-color: #66bb6a; width: 12px; height: 12px; border-radius: 50%; margin: 0 6px;"></button>
+                    </div>
+
+                    <div class="carousel-inner h-100">
+                        <!-- Slide 1 -->
+                        <div class="carousel-item active"
+                            style="background: linear-gradient(135deg, #fff5f8 0%, #ffffff 50%, #f0f7ff 100%);">
+                            <div class="container">
+                                <div class="row align-items-center g-5 py-5" style="min-height: 80vh;">
+                                    <div class="col-lg-6 text-start">
+                                        <div class="d-inline-block px-3 py-1 rounded-pill mb-4 reveal-text"
+                                            style="background:rgba(240, 98, 146, 0.1);color:#c2185b;font-size:0.85rem;font-weight:700;letter-spacing:0.05em; border: 1px solid rgba(240, 98, 146, 0.2);">
+                                            #1 MATERNAL HEALTH APP</div>
+                                        <h1 class="display-3 fw-bold mb-4 reveal-text reveal-delay-1"
+                                            style="color:#1a1a2e;line-height:1.15;">
+                                            Experience Pregnancy
+                                            <br><span
+                                                style="background:linear-gradient(135deg,#f06292,#e91e8c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">With
+                                                Confidence</span>
+                                        </h1>
+                                        <p class="lead text-muted mb-5 pe-lg-5 reveal-text reveal-delay-2"
+                                            style="font-size: 1.15rem; line-height: 1.6;">From the first kick to the
+                                            first step,
+                                            we're here with smart tracking, medical insights, and a safe space for your
+                                            journey.</p>
+                                        <div
+                                            class="d-flex gap-3 flex-wrap align-items-center reveal-text reveal-delay-3">
+                                            <button onclick="obNext(2)"
+                                                class="btn btn-lg text-white rounded-pill px-5 py-3 shadow-lg btn-shimmer"
+                                                style="background:linear-gradient(135deg,#f06292,#ec407a);border:none; font-weight: 700;">Start
+                                                My Journey</button>
+                                            <button class="btn btn-lg btn-white border rounded-pill px-5 py-3 fw-bold"
+                                                style="color: #666;">Watch
+                                                Video</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-none d-lg-block">
+                                        <div class="shadow-premium overflow-hidden rounded-5 position-relative"
+                                            style="height: 520px;">
+                                            <img src="https://img.freepik.com/free-photo/trimester-pregnant-woman_53876-139514.jpg"
+                                                class="d-block w-100 h-100 object-fit-cover" alt="Mother and Baby Bond">
+                                            <div class="position-absolute bottom-0 start-0 m-4 p-4 glass-card rounded-4 border-0 shadow-lg"
+                                                style="max-width: 280px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);">
+                                                <h6 class="fw-bold mb-1 text-dark">Gentle Care</h6>
+                                                <p class="small mb-0 text-muted">Medical accuracy with a mother's touch.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-item"
+                            style="background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 50%, #fff5f8 100%);">
+                            <div class="container">
+                                <div class="row align-items-center g-5 py-5" style="min-height: 80vh;">
+                                    <div class="col-lg-6 text-start">
+                                        <div class="d-inline-block px-3 py-1 rounded-pill mb-4"
+                                            style="background:rgba(66, 165, 245, 0.1);color:#1976d2;font-size:0.85rem;font-weight:700;letter-spacing:0.05em; border: 1px solid rgba(66, 165, 245, 0.2);">
+                                            PERSONALIZED TRACKING</div>
+                                        <h1 class="display-3 fw-bold mb-4" style="color:#1a1a2e;line-height:1.15;">Track
+                                            Your Journey
+                                            <br><span
+                                                style="background:linear-gradient(135deg,#42a5f5,#1976d2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">With
+                                                Precision</span>
+                                        </h1>
+                                        <p class="lead text-muted mb-5 pe-lg-5"
+                                            style="font-size: 1.15rem; line-height: 1.6;">Follow your baby's growth
+                                            week-by-week
+                                            with beautiful imagery and medically-accurate updates tailored to your
+                                            unique stage.</p>
+                                        <div class="d-flex gap-3 flex-wrap align-items-center">
+                                            <button onclick="obNext(2)"
+                                                class="btn btn-lg text-white rounded-pill px-5 py-3 shadow-lg"
+                                                style="background:linear-gradient(135deg,#1976d2,#1565c0);border:none; font-weight: 700;">Explore
+                                                Features</button>
+                                            <button class="btn btn-lg btn-white border rounded-pill px-5 py-3 fw-bold"
+                                                style="color: #666;">See
+                                                UI Demo</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-none d-lg-block">
+                                        <div class="shadow-premium overflow-hidden rounded-5 position-relative"
+                                            style="height: 520px;">
+                                            <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=1200&q=80"
+                                                class="d-block w-100 h-100 object-fit-cover" alt="Pregnancy Journey">
+                                            <div class="position-absolute bottom-0 start-0 m-4 p-4 glass-card rounded-4 border-0 shadow-lg"
+                                                style="max-width: 280px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);">
+                                                <h6 class="fw-bold mb-1 text-dark">Your Journey</h6>
+                                                <p class="small mb-0 text-muted">Every milestone, beautifully tracked.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="carousel-item"
+                            style="background: linear-gradient(135deg, #f1f8e9 0%, #ffffff 50%, #f0f7ff 100%);">
+                            <div class="container">
+                                <div class="row align-items-center g-5 py-5" style="min-height: 80vh;">
+                                    <div class="col-lg-6 text-start">
+                                        <div class="d-inline-block px-3 py-1 rounded-pill mb-4"
+                                            style="background:rgba(102, 187, 106, 0.1);color:#2e7d32;font-size:0.85rem;font-weight:700;letter-spacing:0.05em; border: 1px solid rgba(102, 187, 106, 0.2);">
+                                            TRUSTED CLINICAL DATA</div>
+                                        <h1 class="display-3 fw-bold mb-4" style="color:#1a1a2e;line-height:1.15;">
+                                            Expert
+                                            Guidance
+                                            <br><span
+                                                style="background:linear-gradient(135deg,#66bb6a,#2e7d32);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">For
+                                                Peace of Mind</span>
+                                        </h1>
+                                        <p class="lead text-muted mb-5 pe-lg-5"
+                                            style="font-size: 1.15rem; line-height: 1.6;">Access professional health
+                                            advice and
+                                            maintain a secure health vault for your scans and lab reports throughout
+                                            your entire journey.</p>
+                                        <div class="d-flex gap-3 flex-wrap align-items-center">
+                                            <button onclick="obNext(2)"
+                                                class="btn btn-lg text-white rounded-pill px-5 py-3 shadow-lg"
+                                                style="background:linear-gradient(135deg,#2e7d32,#1b5e20);border:none; font-weight: 700;">Get
+                                                Started Now</button>
+                                            <button class="btn btn-lg btn-white border rounded-pill px-5 py-3 fw-bold"
+                                                style="color: #666;">Clinical
+                                                FAQ</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 d-none d-lg-block">
+                                        <div class="shadow-premium overflow-hidden rounded-5 position-relative"
+                                            style="height: 520px;">
+                                            <img src="https://img.freepik.com/free-vector/hand-drawn-fetal-development-infographic_23-2149204358.jpg"
+                                                class="d-block w-100 h-100 object-fit-cover" alt="Clinical Insight">
+                                            <div class="position-absolute bottom-0 start-0 m-4 p-4 glass-card rounded-4 border-0 shadow-lg"
+                                                style="max-width: 280px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);">
+                                                <h6 class="fw-bold mb-1 text-dark">Clinical Insight</h6>
+                                                <p class="small mb-0 text-muted">Trusted by professionals, loved by
+                                                    families.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Free Tools Section -->
+            <section class="py-5" style="background: linear-gradient(to bottom, #fff0f3 0%, #ffffff 100%);">
+                <div class="container py-4">
+                    <div class="text-center mb-5">
+                        <h2 class="fw-bold mb-2">Free Pregnancy Tools</h2>
+                        <p class="text-muted">Smart calculators you can use instantly.</p>
+                    </div>
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Calculators.DueDate.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-primary d-inline-block p-3 rounded-circle bg-soft-primary">
+                                    <i class="bi bi-calendar-event fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Due Date</h5>
+                                <div class="small text-muted">Find your EDD</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Calculators.Ovulation.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-purple d-inline-block p-3 rounded-circle bg-soft-purple">
+                                    <i class="bi bi-flower1 fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Ovulation</h5>
+                                <div class="small text-muted">Fertile window</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Calculators.Weight.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-success d-inline-block p-3 rounded-circle bg-soft-success">
+                                    <i class="bi bi-speedometer2 fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Weight Gain</h5>
+                                <div class="small text-muted">BMI Tracker</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Calculators.Contraction.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-danger d-inline-block p-3 rounded-circle bg-soft-danger">
+                                    <i class="bi bi-stopwatch fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Timer</h5>
+                                <div class="small text-muted">Contractions</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Calculators.WeekTracker.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-purple d-inline-block p-3 rounded-circle bg-soft-purple"
+                                    style="color:#9c27b0 !important;">
+                                    <i class="bi bi-clock-history fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Week Tracker</h5>
+                                <div class="small text-muted">Ages & Stages</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Calculators.IVF.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-info d-inline-block p-3 rounded-circle"
+                                    style="background-color:rgba(0, 172, 193, 0.1); color:#00acc1 !important;">
+                                    <i class="bi bi-magic fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">IVF Due</h5>
+                                <div class="small text-muted">Transfer date</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Calculators.HCG.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-danger d-inline-block p-3 rounded-circle bg-soft-danger">
+                                    <i class="bi bi-graph-up-arrow fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">hCG Growth</h5>
+                                <div class="small text-muted">Doubling time</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Calculators.SafePeriod.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-success d-inline-block p-3 rounded-circle"
+                                    style="background-color:rgba(46, 125, 50, 0.1); color:#2e7d32 !important;">
+                                    <i class="bi bi-shield-check fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Safe Period</h5>
+                                <div class="small text-muted">Tracking safety</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Calculators.Conception.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-teal d-inline-block p-3 rounded-circle bg-soft-teal"
+                                    style="color:#009688 !important;">
+                                    <i class="bi bi-stars fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Conception</h5>
+                                <div class="small text-muted">Find the date</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.FetalDev.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-pink d-inline-block p-3 rounded-circle bg-soft-pink"
+                                    style="color:#ff6b6b !important;">
+                                    <i class="bi bi-heart-fill fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Explorer</h5>
+                                <div class="small text-muted">Weekly milestones</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.KickCounter.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-coral d-inline-block p-3 rounded-circle bg-soft-coral"
+                                    style="color:#ff7e5f !important;">
+                                    <i class="bi bi-heart-pulse-fill fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Kick Counter</h5>
+                                <div class="small text-muted">Track fetal movement</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.PeriodTracker.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-rose d-inline-block p-3 rounded-circle bg-soft-rose"
+                                    style="color:#f06292 !important;">
+                                    <i class="bi bi-calendar-heart fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Period Tracker</h5>
+                                <div class="small text-muted">Cycle & Ovulation</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Calculators.Biometry.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-indigo d-inline-block p-3 rounded-circle bg-soft-indigo"
+                                    style="color:#6610f2 !important;">
+                                    <i class="bi bi-rulers fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Fetal Scans</h5>
+                                <div class="small text-muted">Weight estimate</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.BishopScore.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-purple d-inline-block p-3 rounded-circle bg-soft-purple"
+                                    style="color:#4527a0 !important;">
+                                    <i class="bi bi-clipboard-pulse fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Bishop Score</h5>
+                                <div class="small text-muted">Labor readiness</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.VBACCalc.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-navy d-inline-block p-3 rounded-circle bg-soft-navy"
+                                    style="color:#1a237e !important;">
+                                    <i class="bi bi-shield-check fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">VBAC Predictor</h5>
+                                <div class="small text-muted">Success chances</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.BMI.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-mint d-inline-block p-3 rounded-circle bg-soft-mint"
+                                    style="color:#26a69a !important;">
+                                    <i class="bi bi-activity fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">BMI Calculator</h5>
+                                <div class="small text-muted">Check health range</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.BMR.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-orange d-inline-block p-3 rounded-circle bg-soft-orange"
+                                    style="color:#ff9800 !important;">
+                                    <i class="bi bi-fire fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">BMR Tool</h5>
+                                <div class="small text-muted">Metabolic rate</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.TDEE.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-sunset d-inline-block p-3 rounded-circle bg-soft-sunset"
+                                    style="color:#ff5722 !important;">
+                                    <i class="bi bi-lightning-charge fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">TDEE Tool</h5>
+                                <div class="small text-muted">Daily energy</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.CalorieGoal.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-teal d-inline-block p-3 rounded-circle bg-soft-teal"
+                                    style="color:#009688 !important;">
+                                    <i class="bi bi-bullseye fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Health Goal</h5>
+                                <div class="small text-muted">Calorie target</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.IBW.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-indigo d-inline-block p-3 rounded-circle bg-soft-indigo"
+                                    style="color:#3f51b5 !important;">
+                                    <i class="bi bi-person-check fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Ideal Weight</h5>
+                                <div class="small text-muted">Target estimate</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 tool-card-glow"
+                                onclick="Companion.UI.Tools.WHR.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-emerald d-inline-block p-3 rounded-circle bg-soft-emerald"
+                                    style="color:#10b981 !important;">
+                                    <i class="bi bi-person-bounding-box fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Body Ratio</h5>
+                                <div class="small text-muted">WHR check</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100"
+                                onclick="Companion.UI.Tools.Macros.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-rose d-inline-block p-3 rounded-circle bg-soft-rose"
+                                    style="color:#e91e63 !important;">
+                                    <i class="bi bi-pie-chart fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Macro Split</h5>
+                                <div class="small text-muted">Diet nutrition</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100"
+                                onclick="Companion.UI.Tools.Hydration.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-blue d-inline-block p-3 rounded-circle bg-soft-blue"
+                                    style="color:#2196f3 !important;">
+                                    <i class="bi bi-droplet-half fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Water Tracker</h5>
+                                <div class="small text-muted">Daily hydration</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100"
+                                onclick="Companion.UI.Tools.BP.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-blood d-inline-block p-3 rounded-circle bg-soft-blood"
+                                    style="color:#d32f2f !important;">
+                                    <i class="bi bi-heart-pulse-fill fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">BP Checker</h5>
+                                <div class="small text-muted">Health category</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100"
+                                onclick="Companion.UI.Tools.TargetHR.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-pulse d-inline-block p-3 rounded-circle bg-soft-pulse"
+                                    style="color:#ff1744 !important;">
+                                    <i class="bi bi-activity fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Heart Zone</h5>
+                                <div class="small text-muted">Intensity guide</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100"
+                                onclick="Companion.UI.Tools.StopBang.open()"
+                                style="cursor:pointer; transition: transform 0.2s;"
+                                onmouseover="this.style.transform='translateY(-5px)'"
+                                onmouseout="this.style.transform='translateY(0)'">
+                                <div class="mb-3 text-navy d-inline-block p-3 rounded-circle bg-soft-navy"
+                                    style="color:#1a237e !important;">
+                                    <i class="bi bi-moon-stars-fill fs-2"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-1">Sleep Apnea</h5>
+                                <div class="small text-muted">Risk assessment</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Grid -->
+            <section class="py-5 bg-white" id="features-section">
+                <div class="container py-5">
+                    <div class="text-center mb-5">
+                        <h2 class="fw-bold mb-3">Everything you need</h2>
+                        <p class="text-muted">Designed by doctors, loved by moms.</p>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="p-4 rounded-4 h-100" style="background:#fff5f7;">
+                                <div class="mb-3 d-inline-flex p-3 rounded-3 bg-white shadow-sm text-accent"><i
+                                        class="bi bi-flower1 fs-3"></i></div>
+                                <h4 class="fw-bold">Weekly Growth</h4>
+                                <p class="text-muted mb-0">Visualise your baby's development with beautiful 3D
+                                    illustrations and size comparisons.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-4 rounded-4 h-100" style="background:#e3f2fd;">
+                                <div class="mb-3 d-inline-flex p-3 rounded-3 bg-white shadow-sm text-primary"><i
+                                        class="bi bi-clipboard-data fs-3"></i></div>
+                                <h4 class="fw-bold">Smart Tracking</h4>
+                                <p class="text-muted mb-0">Log symptoms, weight, kicks, and contractions. We'll alert
+                                    you if anything needs attention.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-4 rounded-4 h-100" style="background:#f3e5f5;">
+                                <div class="mb-3 d-inline-flex p-3 rounded-3 bg-white shadow-sm text-purple"><i
+                                        class="bi bi-shield-lock fs-3"></i></div>
+                                <h4 class="fw-bold">100% Private</h4>
+                                <p class="text-muted mb-0">Your health data is sensitive. That's why it stays on your
+                                    device, simpler and safer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer for Landing -->
+            <footer class="py-4 bg-light text-center text-muted small">
+                © 2026 PregCompanion. All rights reserved.
+            </footer>
+        </div>
+
+        <!-- wrapper for centered modals -->
+        <div id="ob-modal-wrapper" class="d-flex align-items-center justify-content-center w-100 min-vh-100 d-none"
+            style="padding:2rem; background: radial-gradient(circle at 10% 20%, rgba(255, 159, 178, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(195, 166, 255, 0.05) 0%, transparent 40%);">
+
+            <!-- Step 2: Stage Selection -->
+            <div class="onboarding-step d-none w-100 glass-card reveal-up" id="ob-step-2"
+                style="max-width:520px; border:none; padding: 2.5rem;">
+                <div class="text-center mb-4">
+                    <div
+                        style="color:#f06292;font-size:.85rem;font-weight:700;letter-spacing:.1em;margin-bottom:.5rem;">
+                        STEP 1 OF 2</div>
+                    <h2 style="font-size:1.6rem;font-weight:800;color:#1a1a2e;">Where are you in your journey?</h2>
+                    <p style="color:#888;font-size:.9rem;">We'll personalize everything for you.</p>
+                </div>
+                <div class="d-flex flex-column gap-3 mb-4">
+                    <div class="ob-stage-card" data-stage="planning" onclick="obSelectStage(this)">
+                        <div class="ob-icon-box">
+                            <i class="bi bi-stars"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold">Pre-Conception / Planning</div>
+                            <div class="text-secondary small">Trying to conceive, tracking ovulation</div>
+                        </div>
+                    </div>
+                    <div class="ob-stage-card" data-stage="pregnancy" onclick="obSelectStage(this)">
+                        <div class="ob-icon-box">
+                            <i class="bi bi-heart-pulse-fill"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold">Currently Pregnant</div>
+                            <div class="text-secondary small">Track your pregnancy week by week</div>
+                        </div>
+                    </div>
+                    <div class="ob-stage-card" data-stage="postpartum" onclick="obSelectStage(this)">
+                        <div class="ob-icon-box">
+                            <i class="bi bi-balloon-heart-fill"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold">New Mom (Postpartum)</div>
+                            <div class="text-secondary small">Baby is here, tracking recovery & baby</div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="obNext(3)" id="ob-stage-next" class="btn btn-premium w-100 py-3 mt-4"
+                    style="opacity:.5;pointer-events:none;">
+                    Continue <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+            </div>
+
+            <!-- Step 3: Dates -->
+            <div class="onboarding-step d-none w-100 glass-card reveal-up" id="ob-step-3"
+                style="max-width:520px; border:none; padding: 2.5rem;">
+                <div class="text-center mb-4">
+                    <div
+                        style="color:#f06292;font-size:.85rem;font-weight:700;letter-spacing:.1em;margin-bottom:.5rem;">
+                        STEP 2 OF 2</div>
+                    <h2 style="font-size:1.6rem;font-weight:800;color:#1a1a2e;">Enter your dates</h2>
+                    <p style="color:#888;font-size:.9rem;">We'll calculate your due date and current week.</p>
+                </div>
+                <div class="d-flex flex-column gap-4">
+                    <div id="ob-lmp-group">
+                        <label class="fw-bold small poppins text-uppercase tracking-wider mb-2 d-block">First Day of
+                            Last Period (LMP)</label>
+                        <input type="date" id="ob-lmp-input" class="form-control premium-input shadow-none"
+                            oninput="obUpdateEDD()">
+                        <div id="ob-edd-preview" class="mt-3 p-3 rounded-4"
+                            style="background: rgba(255, 159, 178, 0.1); color: #c2185b; display:none;">
+                            <i class="bi bi-calendar-check me-2"></i><span id="ob-edd-text" class="fw-bold">Due Date:
+                                —</span>
+                        </div>
+                    </div>
+
+                    <div id="ob-cycle-group">
+                        <label class="fw-bold small poppins text-uppercase tracking-wider mb-2 d-block">Cycle Length
+                            (Days)</label>
+                        <input type="number" id="ob-cycle-input" class="form-control premium-input shadow-none"
+                            value="28" oninput="obUpdateEDD()">
+                    </div>
+
+                    <div id="ob-birth-group" class="d-none">
+                        <label class="fw-bold small poppins text-uppercase tracking-wider mb-2 d-block">Baby's Birth
+                            Date</label>
+                        <input type="date" id="ob-birth-input" class="form-control premium-input shadow-none">
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 mt-5">
+                    <button onclick="obNext(2)"
+                        class="btn btn-light rounded-pill fw-bold py-3 flex-grow-1">Back</button>
+                    <button onclick="obFinish()" class="btn btn-premium py-3 flex-grow-1">Finish Setup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Onboarding state
+        let _obStage = null;
+
+        function obNext(step) {
+            // Hide all steps first
+            document.querySelectorAll('.onboarding-step').forEach(el => el.classList.add('d-none'));
+
+            // Logic for wrapper
+            const wrapper = document.getElementById('ob-modal-wrapper');
+            if (step === 1) {
+                wrapper.classList.add('d-none');
+                document.getElementById('ob-step-1').classList.remove('d-none');
+            } else {
+                wrapper.classList.remove('d-none');
+                document.getElementById('ob-step-1').classList.add('d-none');
+                document.getElementById('ob-step-' + step).classList.remove('d-none');
+            }
+
+            // Show/hide date fields based on stage
+            if (step === 3) {
+                const isPlanning = _obStage === 'planning';
+                const isPostpartum = _obStage === 'postpartum';
+
+                document.getElementById('ob-lmp-group').classList.add('d-none');
+                document.getElementById('ob-cycle-group').classList.add('d-none');
+                document.getElementById('ob-birth-group').classList.add('d-none');
+
+                if (isPostpartum) {
+                    document.getElementById('ob-birth-group').classList.remove('d-none');
+                    document.querySelector('#ob-step-3 h2').textContent = 'When was baby born?';
+                    document.querySelector('#ob-step-3 p').textContent = 'We\'ll track milestones based on age.';
+                } else if (isPlanning) {
+                    document.getElementById('ob-lmp-group').classList.remove('d-none');
+                    document.getElementById('ob-cycle-group').classList.remove('d-none');
+                    document.querySelector('#ob-step-3 h2').textContent = 'Cycle Details';
+                    document.querySelector('#ob-step-3 p').textContent = 'We\'ll help you track your ovulation window.';
+                } else {
+                    // Pregnancy
+                    document.getElementById('ob-lmp-group').classList.remove('d-none');
+                    document.getElementById('ob-cycle-group').classList.remove('d-none');
+                    document.querySelector('#ob-step-3 h2').textContent = 'Enter your dates';
+                    document.querySelector('#ob-step-3 p').textContent = 'We\'ll calculate your due date.';
+                }
+            }
+        }
+
+        function obSelectStage(el) {
+            document.querySelectorAll('.ob-stage-card').forEach(c => {
+                c.classList.remove('selected');
+            });
+            el.classList.add('selected');
+            _obStage = el.dataset.stage;
+            const btn = document.getElementById('ob-stage-next');
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
+        }
+
+        function obSelectStageAndNext(stage) {
+            _obStage = stage;
+            // Find the card and mark as selected for visual consistency if user goes back
+            document.querySelectorAll('.ob-stage-card').forEach(c => {
+                c.classList.remove('selected');
+                if (c.dataset.stage === stage) c.classList.add('selected');
+            });
+            obNext(3);
+        }
+
+        function obUpdateEDD() {
+            const lmp = document.getElementById('ob-lmp-input').value;
+            const cycle = parseInt(document.getElementById('ob-cycle-input').value) || 28;
+            if (!lmp) { document.getElementById('ob-edd-preview').style.display = 'none'; return; }
+            const edd = dayjs(lmp).add(280 + (cycle - 28), 'day');
+            document.getElementById('ob-edd-text').textContent = 'Due Date: ' + edd.format('MMMM D, YYYY');
+            document.getElementById('ob-edd-preview').style.display = 'block';
+        }
+
+        function obFinish() {
+            const lmp = document.getElementById('ob-lmp-input').value;
+            const cycle = parseInt(document.getElementById('ob-cycle-input').value) || 28;
+            const birthDate = document.getElementById('ob-birth-input').value;
+
+            if (_obStage === 'pregnancy' && !lmp) {
+                document.getElementById('ob-lmp-input').style.border = '2px solid #f06292';
+                document.getElementById('ob-lmp-input').focus();
+                return;
+            }
+
+            if (_obStage === 'postpartum' && !birthDate) {
+                document.getElementById('ob-birth-input').style.border = '2px solid #f06292';
+                document.getElementById('ob-birth-input').focus();
+                return;
+            }
+
+            const profile = {
+                stage: _obStage || 'pregnancy',
+                lmp: lmp || dayjs().format('YYYY-MM-DD'),
+                cycle: cycle,
+                birthDate: birthDate,
+                name: '',
+                setupDate: new Date().toISOString()
+            };
+
+            // Set the mode first so the profile is saved under the right key
+            Companion.Data.setMode(_obStage || 'pregnancy');
+            Companion.Data.save('profile', profile);
+
+            // Hide onboarding, show app
+            document.getElementById('onboarding-host').classList.add('d-none');
+            document.getElementById('main-content').classList.remove('d-none');
+            document.getElementById('hero-banner').classList.add('d-none');
+            document.getElementById('hero-banner').classList.remove('active');
+            document.getElementById('mainNavbar').classList.remove('d-none');
+            document.querySelector('footer.site-footer')?.classList.remove('d-none');
+
+            // Load the dashboard
+            Companion.Dashboard.loadCompanion(profile);
+        }
+    </script>
+
+
+
+
+    <main id="main-content" class="d-none">
+
+        <!-- HOMEPAGE -->
+        <section id="page-home" class="site-page">
+            <div class="site-wrapper pt-5 pb-3" style="padding-top:5rem!important">
+                <div id="alert-host"></div>
+                <div class="d-flex justify-content-between align-items-end mb-4 reveal-up">
+                    <div class="d-flex align-items-center gap-3">
+                        <div>
+                            <div class="subtitle text-accent mb-2">Good Afternoon, <span id="home-user-name">Amma</span>
+                            </div>
+                            <h1 class="fw-bold mb-0">Your Pregnancy <span class="text-accent">Overview</span></h1>
+                        </div>
+                        <button
+                            class="btn btn-soft-primary rounded-circle p-3 d-flex align-items-center justify-content-center site-nav-link"
+                            data-page="profile" style="width: 50px; height: 50px;" title="Settings">
+                            <i class="bi bi-gear-fill fs-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-wrapper section-padding">
+                <!-- Pregnancy Status & Mini Calendar -->
+                <div class="row g-4 mb-5 reveal-up">
+                    <div class="col-lg-4">
+                        <div class="premium-card p-4 h-100 text-center text-lg-start">
+                            <div class="subtitle mb-2">Daily Progress</div>
+                            <h3 class="fw-bold mb-3" id="home-gestation-text">14 Weeks 3 Days</h3>
+                            <div class="progress rounded-pill mb-3" style="height: 8px;">
+                                <div id="home-gestation-progress" class="progress-bar bg-primary-rose"
+                                    style="width: 35%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between x-small text-muted">
+                                <span>Conception</span>
+                                <span id="home-edd-display">Due: Oct 24</span>
+                            </div>
+                            <div class="mt-4 p-3 bg-soft-rose rounded-20 d-inline-block" id="home-countdown">
+                                <div class="text-center x-small text-muted">Calculating Journey Time...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="premium-card p-0 h-100 border-0 overflow-hidden position-relative womb-container d-flex flex-column align-items-center pt-4"
+                            style="min-height:260px;">
+
+                            <!-- Top Label -->
+                            <div class="womb-label mb-2 text-center w-100"
+                                style="font-size: 11px; font-weight: 400; color: #f06292;">
+                                Your baby is size of a <span id="home-baby-size">—</span>
+                            </div>
+
+                            <!-- Image -->
+                            <div class="womb-svg-wrap mb-3"
+                                style="height:140px;min-height:140px;width:100%;display:flex;justify-content:center;background:transparent;">
+                                <img id="womb-img" src="images/babyimage.webp" alt="Baby Ultrasound Scan"
+                                    style="width:140px;height:140px;border-radius:50%;object-fit:cover;border:2px solid #333;box-shadow: 0 0 15px rgba(255,255,255,0.1);">
+                            </div>
+
+                            <!-- Stats Panel -->
+                            <div class="womb-info-panel w-100 d-flex flex-column align-items-center">
+                                <div class="d-flex gap-2">
+                                    <div class="womb-week-badge mb-3" id="home-baby-week-badge">Week —</div>
+                                    <div class="womb-month-badge mb-3" id="home-baby-month-badge">Month —</div>
+                                </div>
+                                <!-- Stats row -->
+                                <div class="womb-stats-row">
+                                    <div class="womb-stat">
+                                        <div class="womb-stat-icon">📏</div>
+                                        <div class="womb-stat-val" id="home-baby-length">—</div>
+                                        <div class="womb-stat-lbl">Length</div>
+                                    </div>
+                                    <div class="womb-stat-divider"></div>
+                                    <div class="womb-stat">
+                                        <div class="womb-stat-icon">⚖️</div>
+                                        <div class="womb-stat-val" id="home-baby-weight">—</div>
+                                        <div class="womb-stat-lbl">Weight</div>
+                                    </div>
+                                    <div class="womb-stat-divider"></div>
+                                    <div class="womb-stat">
+                                        <div class="womb-stat-icon">🫀</div>
+                                        <div class="womb-stat-val" id="home-baby-trimester">—</div>
+                                        <div class="womb-stat-lbl">Trimester</div>
+                                    </div>
+                                </div>
+                                <!-- Milestone note -->
+                                <div class="womb-note mt-2" id="home-baby-desc">Loading...</div>
+                            </div>
+                            <div id="home-baby-image" style="display:none;"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="premium-card p-4 h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="subtitle mb-0">Quick View</div>
+                                <a href="javascript:void(0)" class="site-nav-link text-accent x-small fw-bold"
+                                    data-page="calendar">Full Calendar</a>
+                            </div>
+                            <div id="mini-calendar-grid" class="mini-calendar-grid">
+                                <!-- Dynamic Mini Grid -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekly Highlight Banner -->
+                <div class="reveal-up mb-5" id="home-weekly-highlight">
+                    <div class="premium-card p-4 bg-soft-rose border-0 position-relative overflow-hidden">
+                        <div class="position-absolute top-0 end-0 p-3 opacity-10">
+                            <i class="bi bi-stars display-1 text-accent"></i>
+                        </div>
+                        <div class="d-flex gap-4 align-items-start position-relative z-1">
+                            <div class="rounded-circle bg-white p-3 shadow-sm flex-shrink-0 d-none d-md-block">
+                                <span class="fs-1">💡</span>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold text-accent mb-2"><i class="bi bi-lightbulb pulse-icon me-2"></i>This
+                                    Week's Highlight</h4>
+                                <p class="lead mb-0" id="home-weekly-note">Your baby is growing fingernails this week!
+                                    It's a great time to start thinking about...</p>
+                                <div class="mt-3">
+                                    <a href="javascript:void(0)"
+                                        class="btn btn-sm btn-white rounded-pill text-accent fw-bold shadow-sm"
+                                        onclick="Companion.UI.showModule('insights')">Read Full Guide</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events (Horizontal Scroll) -->
+                <div class="d-flex justify-content-between align-items-center mb-4 reveal-up">
+                    <h3 class="fw-bold">Upcoming Events</h3>
+                    <a href="javascript:void(0)" class="text-accent fw-bold site-nav-link" data-page="calendar">View
+                        All</a>
+                </div>
+                <div class="scroll-container reveal-up" id="home-upcoming-events">
+                    <!-- Dynamic Events -->
+                    <div class="event-card">
+                        <div class="subtitle text-primary mb-2">Tomorrow</div>
+                        <h5 class="fw-bold">Regular Checkup</h5>
+                        <p class="small text-muted mb-0">Dr. G • 10:30 AM</p>
+                    </div>
+                </div>
+
+                <!-- Daily Tracking Interactive Tiles -->
+                <h3 class="fw-bold mt-5 mb-4 reveal-up">Daily Moments</h3>
+                <div class="action-grid reveal-up">
+                    <div class="tile-btn tracker-trigger" data-tracker="water">
+                        <i class="bi bi-droplet-fill text-info"></i>
+                        <span class="fw-bold">Water</span>
+                        <div class="x-small text-muted" id="home-water-summary">6 / 8 Cups</div>
+                    </div>
+                    <div class="tile-btn tracker-trigger" data-tracker="symptoms">
+                        <i class="bi bi-bandaid-fill text-warning"></i>
+                        <span class="fw-bold">Symptoms</span>
+                        <div class="x-small text-muted">Log Feeling</div>
+                    </div>
+                    <div class="tile-btn tracker-trigger" data-tracker="sleep">
+                        <i class="bi bi-moon-stars-fill text-primary"></i>
+                        <span class="fw-bold">Sleep</span>
+                        <div class="x-small text-muted" id="home-sleep-summary">7.5 Hours</div>
+                    </div>
+                    <div class="tile-btn tracker-trigger" data-tracker="kicks">
+                        <i class="bi bi-heart-pulse-fill text-danger"></i>
+                        <span class="fw-bold">Kicks</span>
+                        <div class="x-small text-muted">Active</div>
+                    </div>
+                </div>
+
+                <!-- Tools & Calculators -->
+                <h3 class="fw-bold mt-5 mb-4 reveal-up">Tools & Calculators</h3>
+                <div class="row g-3 reveal-up">
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Calculators.DueDate.open()">
+                            <div class="mb-2 text-primary d-inline-block p-2 rounded-circle bg-soft-primary">
+                                <i class="bi bi-calendar-event fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Due Date</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Calculators.Ovulation.open()">
+                            <div class="mb-2 text-purple d-inline-block p-2 rounded-circle bg-soft-purple">
+                                <i class="bi bi-flower1 fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Ovulation</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Calculators.Weight.open()">
+                            <div class="mb-2 text-success d-inline-block p-2 rounded-circle bg-soft-success">
+                                <i class="bi bi-speedometer2 fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Weight Gain</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Calculators.SafePeriod.open()">
+                            <div class="mb-2 text-success d-inline-block p-2 rounded-circle border-0"
+                                style="background:#e8f5e9; color:#2e7d32;">
+                                <i class="bi bi-shield-check fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Safe Period</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Calculators.WeekTracker.open()">
+                            <div class="mb-2 text-purple d-inline-block p-2 rounded-circle bg-soft-purple"
+                                style="color:#9c27b0 !important;">
+                                <i class="bi bi-clock-history fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Week Tracker</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Calculators.IVF.open()">
+                            <div class="mb-2 text-info d-inline-block p-2 rounded-circle"
+                                style="background-color:rgba(0, 172, 193, 0.1); color:#00acc1 !important;">
+                                <i class="bi bi-magic fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">IVF Calculator</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Calculators.HCG.open()">
+                            <div class="mb-2 text-danger d-inline-block p-2 rounded-circle bg-soft-danger">
+                                <i class="bi bi-graph-up-arrow fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">hCG Doubling</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Calculators.Conception.open()">
+                            <div class="mb-2 text-teal d-inline-block p-2 rounded-circle bg-soft-teal"
+                                style="color:#009688 !important;">
+                                <i class="bi bi-stars fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Conception Date</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Calculators.Contraction.open()">
+                            <div class="mb-2 text-danger d-inline-block p-2 rounded-circle bg-soft-danger">
+                                <i class="bi bi-stopwatch fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Contraction Timer</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.FetalDev.open()">
+                            <div class="mb-2 text-pink d-inline-block p-2 rounded-circle bg-soft-pink"
+                                style="color:#ff6b6b !important;">
+                                <i class="bi bi-heart-fill fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Fetal Explorer</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Calculators.Biometry.open()">
+                            <div class="mb-2 text-indigo d-inline-block p-2 rounded-circle bg-soft-indigo"
+                                style="color:#6610f2 !important;">
+                                <i class="bi bi-rulers fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Scan Biometry</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.KickCounter.open()">
+                            <div class="mb-2 text-coral d-inline-block p-2 rounded-circle bg-soft-coral"
+                                style="color:#ff7e5f !important;">
+                                <i class="bi bi-heart-pulse-fill fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Kick Counter</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.PeriodTracker.open()">
+                            <div class="mb-2 text-rose d-inline-block p-2 rounded-circle bg-soft-rose"
+                                style="color:#f06292 !important;">
+                                <i class="bi bi-calendar-heart fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Period Tracker</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.BishopScore.open()">
+                            <div class="mb-2 text-purple d-inline-block p-2 rounded-circle bg-soft-purple"
+                                style="color:#4527a0 !important;">
+                                <i class="bi bi-clipboard-pulse fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Bishop Score</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.VBACCalc.open()">
+                            <div class="mb-2 text-navy d-inline-block p-2 rounded-circle bg-soft-navy"
+                                style="color:#1a237e !important;">
+                                <i class="bi bi-shield-check fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">VBAC Predictor</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.BMI.open()">
+                            <div class="mb-2 text-mint d-inline-block p-2 rounded-circle bg-soft-mint"
+                                style="color:#26a69a !important;">
+                                <i class="bi bi-activity fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">BMI Calculator</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.BMR.open()">
+                            <div class="mb-2 text-orange d-inline-block p-2 rounded-circle bg-soft-orange"
+                                style="color:#ff9800 !important;">
+                                <i class="bi bi-fire fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">BMR Tool</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.TDEE.open()">
+                            <div class="mb-2 text-sunset d-inline-block p-2 rounded-circle bg-soft-sunset"
+                                style="color:#ff5722 !important;">
+                                <i class="bi bi-lightning-charge fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">TDEE Tool</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.CalorieGoal.open()">
+                            <div class="mb-2 text-teal d-inline-block p-2 rounded-circle bg-soft-teal"
+                                style="color:#009688 !important;">
+                                <i class="bi bi-bullseye fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Calorie Goal</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.IBW.open()">
+                            <div class="mb-2 text-indigo d-inline-block p-2 rounded-circle bg-soft-indigo"
+                                style="color:#3f51b5 !important;">
+                                <i class="bi bi-person-check fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Ideal Weight</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.WHR.open()">
+                            <div class="mb-2 text-emerald d-inline-block p-2 rounded-circle bg-soft-emerald"
+                                style="color:#10b981 !important;">
+                                <i class="bi bi-person-bounding-box fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Body Ratio</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.Macros.open()">
+                            <div class="mb-2 text-rose d-inline-block p-2 rounded-circle bg-soft-rose"
+                                style="color:#e91e63 !important;">
+                                <i class="bi bi-pie-chart fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Macros</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.Hydration.open()">
+                            <div class="mb-2 text-blue d-inline-block p-2 rounded-circle bg-soft-blue"
+                                style="color:#2196f3 !important;">
+                                <i class="bi bi-droplet-half fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Water Tracker</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn" onclick="Companion.UI.Tools.BP.open()">
+                            <div class="mb-2 text-blood d-inline-block p-2 rounded-circle bg-soft-blood"
+                                style="color:#d32f2f !important;">
+                                <i class="bi bi-heart-pulse-fill fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">BP Checker</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.TargetHR.open()">
+                            <div class="mb-2 text-pulse d-inline-block p-2 rounded-circle bg-soft-pulse"
+                                style="color:#ff1744 !important;">
+                                <i class="bi bi-activity fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Heart Zone</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="premium-card p-3 text-center h-100 tile-btn"
+                            onclick="Companion.UI.Tools.StopBang.open()">
+                            <div class="mb-2 text-navy d-inline-block p-2 rounded-circle bg-soft-navy"
+                                style="color:#1a237e !important;">
+                                <i class="bi bi-moon-stars-fill fs-4"></i>
+                            </div>
+                            <div class="fw-bold small">Sleep Risk</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions / SOS -->
+                <div class="row g-4 mt-5 reveal-up">
+                    <div class="col-md-6">
+                        <div class="premium-card p-4 bg-danger bg-opacity-10 border-danger border-opacity-25"
+                            onclick="Companion.UI.showModule('emergency-card')">
+                            <div class="d-flex align-items-center gap-3">
+                                <i class="bi bi-exclamation-triangle-fill text-danger fs-3"></i>
+                                <div>
+                                    <div class="fw-bold text-danger">Emergency Card</div>
+                                    <div class="x-small text-muted">Quick access to medical profile</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="premium-card p-4 bg-info bg-opacity-10 border-info border-opacity-25"
+                            onclick="Companion.UI.showModule('hospital-bag')">
+                            <div class="d-flex align-items-center gap-3">
+                                <i class="bi bi-bag-check-fill text-info fs-3"></i>
+                                <div>
+                                    <div class="fw-bold text-info">Hospital Bag</div>
+                                    <div class="x-small text-muted">View packed checklist</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALENDAR PAGE -->
+        <section id="page-calendar" class="site-page">
+            <div class="site-wrapper section-padding">
+                <div class="row g-5">
+                    <div class="col-lg-8">
+                        <div class="calendar-wrapper reveal-up">
+                            <div class="calendar-header">
+                                <h1 class="fw-bold mb-0 text-accent" id="cal-month-year">February 2026</h1>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-light rounded-circle shadow-sm"
+                                        onclick="Companion.Calendar.prev()"><i class="bi bi-chevron-left"></i></button>
+                                    <button class="btn btn-light rounded-circle shadow-sm"
+                                        onclick="Companion.Calendar.next()"><i class="bi bi-chevron-right"></i></button>
+                                    <button class="btn btn-dark rounded-pill px-4 ms-3"
+                                        id="heatmap-toggle">Heatmap</button>
+                                </div>
+                            </div>
+                            <div class="row mb-4 text-center fw-bold text-muted x-small ls-wider">
+                                <div class="col">SUN</div>
+                                <div class="col">MON</div>
+                                <div class="col">TUE</div>
+                                <div class="col">WED</div>
+                                <div class="col">THU</div>
+                                <div class="col">FRI</div>
+                                <div class="col">SAT</div>
+                            </div>
+                            <div class="month-grid" id="calendar-grid-premium">
+                                <!-- Dynamic Grid -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="reveal-up mt-4 mt-lg-0" style="animation-delay: 0.2s;">
+                            <h3 class="fw-bold mb-4">Monthly Agenda</h3>
+                            <div id="calendar-milestones" class="d-grid gap-3">
+                                <!-- Dynamic Milestones -->
+                            </div>
+
+                            <div class="premium-card bg-soft-rose mt-5 p-4 border-0">
+                                <h5 class="fw-bold mb-3"><i class="bi bi-lightbulb text-accent me-2"></i>Calendar Tips
+                                </h5>
+                                <p class="small text-muted mb-0">Click on any date to see specific logs or add a new
+                                    reminder for that day.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregnancy Timeline Table -->
+                <div id="pregnancy-timeline-container" class="mt-5 reveal-up">
+                    <div class="premium-card p-4">
+                        <h3 class="fw-bold mb-4">Complete Pregnancy Timeline</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle custom-timeline-table">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th style="width: 100px;">Week</th>
+                                        <th>Date Range</th>
+                                        <th style="width: 150px;">Trimester</th>
+                                        <th>Important Milestones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="timeline-table-body">
+                                    <!-- Dynamic Timeline -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-4 x-small text-muted border-top pt-3">
+                            <span class="text-accent fw-bold">Note:</span> The results of this calculator are
+                            estimations based on averages for single pregnancy.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRACKER PAGE -->
+        <section id="page-tracker" class="site-page">
+            <div class="site-wrapper section-padding">
+                <h2 class="hero-title text-start mb-5 reveal-up">Your <span class="text-accent">Trackers.</span></h2>
+
+                <div class="row g-4 reveal-up" id="tracker-hub-grid">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="premium-card h-100" onclick="Companion.UI.showModule('health')">
+                            <i class="bi bi-clipboard2-pulse fs-2 text-primary mb-3"></i>
+                            <h4 class="fw-bold">Health Metrics</h4>
+                            <p class="small text-muted">Log Blood Pressure, Sugar & Weight</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="premium-card h-100" onclick="Companion.UI.showModule('lab')">
+                            <i class="bi bi-shield-check fs-2 text-success mb-3"></i>
+                            <h4 class="fw-bold">Medical Vault</h4>
+                            <p class="small text-muted">Upload Scans & Lab Reports</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="premium-card h-100" onclick="Companion.UI.showModule('journal')">
+                            <i class="bi bi-journal-richtext fs-2 text-warning mb-3"></i>
+                            <h4 class="fw-bold">Daily Journal</h4>
+                            <p class="small text-muted">Write memories & milestones</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="premium-card h-100" onclick="Companion.UI.showModule('bump-tracker')">
+                            <i class="bi bi-camera fs-2 text-info mb-3"></i>
+                            <h4 class="fw-bold">Bump Tracker</h4>
+                            <p class="small text-muted">Weekly belly photo progress</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="premium-card h-100" onclick="Companion.UI.showModule('birth-plan')">
+                            <i class="bi bi-stars fs-2 text-accent mb-3"></i>
+                            <h4 class="fw-bold">Birth Plan</h4>
+                            <p class="small text-muted">Preferences for your big day</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module Overlay Placeholder -->
+                <div id="module-overlay" class="mt-5 pt-5 d-none">
+                    <button class="btn btn-link text-dark p-0 mb-4" id="close-module-overlay"><i
+                            class="bi bi-arrow-left me-2"></i>Back to Hub</button>
+                    <div id="module-content-host"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INSIGHTS PAGE -->
+        <section id="page-insights" class="site-page">
+            <div class="site-wrapper section-padding">
+                <h2 class="hero-title text-start mb-5 reveal-up">Health <span class="text-accent">Insights.</span></h2>
+
+                <div class="row g-4 mb-5 reveal-up">
+                    <div class="col-lg-8">
+                        <div class="premium-card p-4">
+                            <!-- Weekly Development Guide -->
+                            <div id="weekly-guide-container" class="mb-5"></div>
+
+                            <h4 class="fw-bold mb-4">Weight Gain Trend</h4>
+                            <div id="smart-insights-container" class="mb-4"></div>
+                            <div class="chart-container" style="height: 300px;">
+                                <canvas id="insights-weight-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="premium-card p-4 h-100 text-center">
+                            <h4 class="fw-bold mb-4">Summary</h4>
+                            <div class="display-3 fw-bold text-accent" id="insight-total-gain">+4.2</div>
+                            <div class="subtitle mb-4">Total kg Gained</div>
+                            <div class="badge bg-success rounded-pill px-4 py-2">Healthy Progress</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 reveal-up">
+                    <div class="col-md-6">
+                        <div class="premium-card p-4">
+                            <h5 class="fw-bold mb-3">Blood Pressure</h5>
+                            <div style="height: 200px;"><canvas id="insights-bp-chart"></canvas></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="premium-card p-4">
+                            <h5 class="fw-bold mb-3">Sleep Quality</h5>
+                            <div style="height: 200px;"><canvas id="insights-sleep-chart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESOURCES PAGE -->
+        <section id="page-resources" class="site-page">
+            <div class="site-wrapper section-padding">
+                <h2 class="hero-title text-start mb-5 reveal-up">Knowledge <span class="text-accent">Hub.</span></h2>
+
+                <div class="row g-4 reveal-up">
+                    <div class="col-md-6">
+                        <div class="premium-card p-0 overflow-hidden h-100">
+                            <div style="height: 240px; background: var(--primary-rose-soft);"
+                                class="d-flex align-items-center justify-content-center">
+                                <i class="bi bi-egg-fried text-primary-rose" style="font-size: 4rem;"></i>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="fw-bold">Healthy Eating Guide</h4>
+                                <p class="text-muted small">Discover the essential vitamins and nutrients you need for a
+                                    healthy pregnancy.</p>
+                                <button class="btn btn-link p-0 text-accent fw-bold text-decoration-none">Read Article
+                                    <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="premium-card p-0 overflow-hidden h-100">
+                            <div style="height: 240px; background: var(--accent-blue-soft);"
+                                class="d-flex align-items-center justify-content-center">
+                                <i class="bi bi-wind text-accent" style="font-size: 4rem;"></i>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="fw-bold">Yoga & Breathing</h4>
+                                <p class="text-muted small">Gentle exercises and meditation techniques to keep you calm
+                                    and flexible.</p>
+                                <button class="btn btn-link p-0 text-accent fw-bold text-decoration-none">Read Article
+                                    <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFILE PAGE -->
+        <section id="page-profile" class="site-page">
+            <div class="site-wrapper section-padding">
+                <div style="max-width: 680px; margin: 0 auto;">
+
+                    <!-- Profile Header -->
+                    <div class="premium-card p-5 text-center reveal-up mb-4">
+                        <div class="nav-logo mx-auto mb-4" style="width: 80px; height: 80px; font-size: 2rem;">P</div>
+                        <h2 class="fw-bold">Your Profile</h2>
+                        <p class="text-muted mb-4">Manage your pregnancy details and app settings.</p>
+                        <button class="btn btn-soft-danger btn-sm rounded-pill px-4"
+                            onclick="document.getElementById('profile-reset-btn').click()">
+                            <i class="bi bi-trash3 me-2"></i>Reset & Start Over
+                        </button>
+                    </div>
+
+                    <!-- Current Data Summary -->
+                    <div class="premium-card p-4 mb-4 reveal-up">
+                        <h5 class="fw-bold mb-4"><i class="bi bi-clipboard2-pulse text-accent me-2"></i>Current
+                            Pregnancy Data</h5>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="bg-soft-rose rounded-20 p-3 text-center">
+                                    <div class="x-small text-muted fw-bold ls-wider mb-1">LAST PERIOD (LMP)</div>
+                                    <div class="fw-bold" id="profile-lmp-display">—</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bg-soft-rose rounded-20 p-3 text-center">
+                                    <div class="x-small text-muted fw-bold ls-wider mb-1">DUE DATE (EDD)</div>
+                                    <div class="fw-bold" id="profile-edd-display">—</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Pregnancy Dates -->
+                    <div class="premium-card p-4 mb-4 reveal-up">
+                        <h5 class="fw-bold mb-4"><i class="bi bi-calendar-heart text-accent me-2"></i>Update Pregnancy
+                            Dates</h5>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Last Menstrual Period (LMP)</label>
+                            <input type="date" class="form-control rounded-pill px-4" id="profile-lmp-input">
+                            <div class="form-text x-small">Your due date will be automatically recalculated.</div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold">Cycle Length (days)</label>
+                            <input type="number" class="form-control rounded-pill px-4" id="profile-cycle-input"
+                                min="21" max="45" value="28">
+                        </div>
+                        <button class="btn btn-primary w-100 rounded-pill py-3 fw-bold" id="profile-save-dates-btn">
+                            <i class="bi bi-check-circle me-2"></i>Save & Recalculate
+                        </button>
+                    </div>
+
+                    <!-- Personal Details -->
+                    <div class="premium-card p-4 mb-4 reveal-up">
+                        <h5 class="fw-bold mb-4"><i class="bi bi-person-circle text-accent me-2"></i>Personal Details
+                        </h5>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Full Name</label>
+                            <input type="text" class="form-control rounded-pill px-4" id="profile-name-input"
+                                placeholder="Your name">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold">Current Stage</label>
+                            <select class="form-select rounded-pill px-4" id="profile-stage-select">
+                                <option value="planning">Pre-Conception / Planning</option>
+                                <option value="pregnancy">Pregnancy</option>
+                                <option value="postpartum">Newborn Care (Postpartum)</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-outline-primary w-100 rounded-pill py-3 fw-bold"
+                            id="profile-save-details-btn">
+                            <i class="bi bi-save me-2"></i>Save Details
+                        </button>
+                    </div>
+
+                    <!-- Danger Zone -->
+                    <div class="premium-card p-4 mb-4 reveal-up border border-danger border-opacity-25">
+                        <h5 class="fw-bold mb-2 text-danger"><i class="bi bi-exclamation-triangle me-2"></i>Danger Zone
+                        </h5>
+                        <p class="text-muted small mb-4">This will permanently delete all your data including pregnancy
+                            dates, journal entries, reminders, and tracker logs. This action cannot be undone.</p>
+                        <button class="btn btn-danger w-100 rounded-pill py-3 fw-bold" id="profile-reset-btn">
+                            <i class="bi bi-trash3 me-2"></i>Reset Everything & Start Over
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="site-wrapper">
+            <div class="footer-grid">
+                <div>
+                    <div class="brand-logo mb-4">
+                        <div class="logo-icon">P</div>
+                        <span>PregCompanion</span>
+                    </div>
+                    <p class="text-muted small">The ultimate premium companion for a healthy, happy, and calm pregnancy
+                        journey.</p>
+                </div>
+                <div>
+                    <h5 class="footer-title">Navigation</h5>
+                    <ul class="footer-links">
+                        <li><a href="javascript:void(0)" class="site-nav-link" data-page="home">Home</a></li>
+                        <li><a href="javascript:void(0)" class="site-nav-link" data-page="calendar">Calendar</a></li>
+                        <li><a href="javascript:void(0)" class="site-nav-link" data-page="tracker">Tracker</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="footer-title">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="javascript:void(0)" class="site-nav-link" data-page="resources">Guides</a></li>
+                        <li><a href="javascript:void(0)" class="site-nav-link" data-page="resources">Nutrition</a></li>
+                        <li><a href="javascript:void(0)" class="site-nav-link" data-page="resources">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="footer-title">Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="javascript:void(0)">About Us</a></li>
+                        <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-4 border-top text-center text-muted small">
+                &copy; 2026 PregCompanion Premium. All rights reserved. <br>
+                <div class="mt-2 x-small">Medical Disclaimer: This application is for educational purposes only and is
+                    not intended to replace professional medical advice.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Day Detail Modal -->
+    <div class="modal fade" id="dayDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-24 border-0 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h4 class="fw-bold mb-0" id="day-detail-title">October 24</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div id="day-logs-container" class="mb-4">
+                        <h6 class="fw-bold text-muted mb-3">Logs & Events</h6>
+                        <div id="day-events-list" class="d-grid gap-2">
+                            <!-- Dynamic Day Events -->
+                        </div>
+                    </div>
+                    <hr class="my-4 opacity-10">
+                    <div id="add-reminder-container">
+                        <h6 class="fw-bold mb-3">Add Quick Reminder</h6>
+                        <div class="mb-3">
+                            <input type="text" id="quick-reminder-title" class="form-control rounded-pill px-4"
+                                placeholder="e.g. Appointment, Vitamins...">
+                        </div>
+                        <div class="d-flex gap-2">
+                            <select id="quick-reminder-type" class="form-select rounded-pill px-4">
+                                <option value="custom">General</option>
+                                <option value="doctor">Medical Visit</option>
+                                <option value="vaccine">Vaccination</option>
+                                <option value="scan">Ultrasound</option>
+                            </select>
+                            <button class="btn btn-primary rounded-pill px-4"
+                                onclick="Companion.Calendar.addQuickReminder()">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Module Host for context-shifting -->
+    <div id="module-hidden-host" class="d-none">
+        <!-- Health Metrics Module -->
+        <div id="module-health" class="companion-module d-none">
+            <h3 class="fw-bold mb-4">Health Metrics</h3>
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <div class="premium-card p-4 h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="fw-bold mb-0">Blood Pressure</h5>
+                            <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal"
+                                data-bs-target="#logBpModal">Log BP</button>
+                        </div>
+                        <div class="chart-container" style="height: 200px; position: relative;">
+                            <canvas id="bpChart"></canvas>
+                        </div>
+                        <div class="table-responsive mt-3">
+                            <table class="table table-sm align-middle">
+                                <thead class="text-muted x-small uppercase">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Reading</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bp-history"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="premium-card p-4 h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="fw-bold mb-0">Blood Sugar</h5>
+                            <button class="btn btn-sm btn-outline-danger rounded-pill px-3" data-bs-toggle="modal"
+                                data-bs-target="#logBsModal">Log Sugar</button>
+                        </div>
+                        <div class="chart-container" style="height: 200px; position: relative;">
+                            <canvas id="bsChart"></canvas>
+                        </div>
+                        <div class="table-responsive mt-3">
+                            <table class="table table-sm align-middle">
+                                <thead class="text-muted x-small uppercase">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Value</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bs-history"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modals for Health forms -->
+            <div class="modal fade" id="logBpModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 rounded-4 shadow-lg p-3">
+                        <div class="modal-header border-0">
+                            <h5 class="fw-bold mb-0">Log Blood Pressure</h5><button type="button" class="btn-close"
+                                data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="log-bp-form">
+                                <div class="row g-3">
+                                    <div class="col-6"><label class="small fw-bold">Systolic</label><input type="number"
+                                            id="bp-sys-input" class="form-control premium-input" required></div>
+                                    <div class="col-6"><label class="small fw-bold">Diastolic</label><input
+                                            type="number" id="bp-dia-input" class="form-control premium-input" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 mt-4 rounded-pill py-2">Save
+                                    Reading</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="logBsModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 rounded-4 shadow-lg p-3">
+                        <div class="modal-header border-0">
+                            <h5 class="fw-bold mb-0">Log Blood Sugar</h5><button type="button" class="btn-close"
+                                data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="log-bs-form">
+                                <div class="mb-3"><label class="small fw-bold">Value (mg/dL)</label><input type="number"
+                                        id="bs-value-input" class="form-control premium-input" required></div>
+                                <div class="mb-3"><label class="small fw-bold">Type</label><select id="bs-type-input"
+                                        class="form-select premium-input">
+                                        <option value="fasting">Fasting</option>
+                                        <option value="post-meal">Post-Meal</option>
+                                    </select></div>
+                                <button type="submit" class="btn btn-danger w-100 mt-4 rounded-pill py-2">Save
+                                    Reading</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medical Vault Module -->
+        <div id="module-lab" class="companion-module d-none">
+            <h3 class="fw-bold mb-4">Medical Vault</h3>
+            <div class="premium-card p-4 text-center py-5">
+                <i class="bi bi-shield-lock display-1 text-success mb-3 opacity-50"></i>
+                <h5 class="fw-bold text-dark">Secure Document Storage</h5>
+                <p class="text-muted small mb-4">Upload and safely store your critical scans, reports, and lab results
+                    here.</p>
+                <button class="btn btn-success rounded-pill px-4">Upload Document</button>
+            </div>
+        </div>
+
+        <!-- Daily Journal Module -->
+        <div id="module-journal" class="companion-module d-none">
+            <h3 class="fw-bold mb-4">Daily Journal</h3>
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="premium-card p-4">
+                        <form id="journal-entry-form">
+                            <div class="mb-4">
+                                <label class="small fw-bold mb-2">How are you feeling today?</label>
+                                <div class="d-flex gap-2">
+                                    <input type="radio" name="journal-mood" value="happy" id="mood-happy"
+                                        class="btn-check" required>
+                                    <label class="btn btn-outline-warning rounded-circle p-2 px-3 fw-bold"
+                                        for="mood-happy">😊</label>
+                                    <input type="radio" name="journal-mood" value="tired" id="mood-tired"
+                                        class="btn-check">
+                                    <label class="btn btn-outline-secondary rounded-circle p-2 px-3 fw-bold"
+                                        for="mood-tired">😴</label>
+                                    <input type="radio" name="journal-mood" value="sad" id="mood-sad" class="btn-check">
+                                    <label class="btn btn-outline-primary rounded-circle p-2 px-3 fw-bold"
+                                        for="mood-sad">😢</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small fw-bold mb-2">Note / Memory</label>
+                                <textarea id="journal-note-input" class="form-control premium-input" rows="5"
+                                    placeholder="Dear journal..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-warning w-100 rounded-pill py-2 fw-bold text-dark">Save
+                                Entry</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div id="journal-entries-list" class="d-flex flex-column gap-3">
+                        <div class="text-center text-muted p-5 bg-white rounded-4 border">No journal entries yet.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bump Tracker Module -->
+        <div id="module-bump-tracker" class="companion-module d-none">
+            <h3 class="fw-bold mb-4">Bump Tracker</h3>
+            <div class="premium-card p-4 text-center py-5">
+                <i class="bi bi-camera display-1 text-info mb-3 opacity-50"></i>
+                <h5 class="fw-bold text-dark">Document Your Journey</h5>
+                <p class="text-muted small mb-4">Take a photo every week to see your beautiful bump grow over time.</p>
+                <button class="btn btn-info rounded-pill px-4 text-white">Add New Photo</button>
+            </div>
+        </div>
+
+        <!-- Birth Plan Module -->
+        <div id="module-birth-plan" class="companion-module d-none">
+            <h3 class="fw-bold mb-4">Birth Plan</h3>
+            <div class="premium-card p-4 text-center py-5">
+                <i class="bi bi-stars display-1 text-accent mb-3 opacity-50"></i>
+                <h5 class="fw-bold text-dark">Design Your Experience</h5>
+                <p class="text-muted small mb-4">Define your preferences for labor, delivery, and newborn care to share
+                    with your medical team.</p>
+                <button class="btn btn-premium rounded-pill px-4">Create Birth Plan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/isBetween.js"></script>
+    <script>dayjs.extend(window.dayjs_plugin_isBetween)</script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Core Logic -->
+    <script src="js/calculator.js"></script>
+    <script src="js/modules/storage-layer.js"></script>
+    <script src="js/modules/pregnancy-engine.js"></script>
+    <script src="js/modules/milestone-engine.js"></script>
+    <script src="js/modules/reminder-engine.js"></script>
+    <script src="js/modules/planning-cycle.js"></script>
+    <script src="js/modules/engagement-engine.js"></script>
+    <script src="js/modules/encouragement.js"></script>
+    <script src="js/modules/weekly-development.js"></script>
+    <script src="js/modules/share-manager.js"></script>
+    <script src="js/modules/ui-controller.js"></script>
+    <script src="js/modules/dashboard.js"></script>
+
+    <!-- Feature Modules -->
+    <script src="js/modules/pregnancy-calendar.js"></script>
+    <script src="js/modules/pregnancy-journal.js"></script>
+    <script src="js/modules/lab-vault.js"></script>
+    <script src="js/modules/hospital-bag.js"></script>
+    <script src="js/modules/emergency-card.js"></script>
+    <script src="js/modules/appointment-prep.js"></script>
+    <script src="js/modules/weight-tracker.js"></script>
+    <script src="js/modules/water-tracker.js"></script>
+    <script src="js/modules/sleep-tracker.js"></script>
+    <script src="js/modules/symptom-log.js"></script>
+    <script src="js/modules/bump-tracker.js"></script>
+    <script src="js/modules/birth-plan.js"></script>
+    <script src="js/modules/smart-insights.js"></script>
+    <script src="js/modules/calc-due-date.js"></script>
+    <script src="js/modules/calc-ovulation.js"></script>
+    <script src="js/modules/calc-weight.js"></script>
+    <script src="js/modules/calc-contraction.js"></script>
+    <script src="js/modules/calc-ivf.js"></script>
+    <script src="js/modules/calc-week-tracker.js"></script>
+    <script src="js/modules/calc-hcg.js"></script>
+    <script src="js/modules/calc-conception.js"></script>
+    <script src="js/modules/tool-fetal-dev.js"></script>
+    <script src="js/modules/calc-biometry.js"></script>
+    <script src="js/modules/tool-kick-counter.js"></script>
+    <script src="js/modules/tool-period-tracker.js"></script>
+    <script src="js/modules/tool-bishop-score.js"></script>
+    <script src="js/modules/tool-vbac-calc.js"></script>
+    <script src="js/modules/tool-bmi.js"></script>
+    <script src="js/modules/tool-bmr.js"></script>
+    <script src="js/modules/tool-tdee.js"></script>
+    <script src="js/modules/tool-calorie-goal.js"></script>
+    <script src="js/modules/tool-ibw.js"></script>
+    <script src="js/modules/tool-whr.js"></script>
+    <script src="js/modules/tool-macros.js"></script>
+    <script src="js/modules/tool-hydration.js"></script>
+    <script src="js/modules/tool-bp.js"></script>
+    <script src="js/modules/tool-target-hr.js"></script>
+    <script src="js/modules/tool-stop-bang.js"></script>
+    <script src="js/modules/calc-safe-period.js"></script>
+    <script src="js/modules/premium-ui.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            console.log("Initializing Free Tools & Calculators...");
+            // Initialize All Feature Modules
+            if (Companion.UI) {
+                const calcs = Companion.UI.Calculators || {};
+                const tools = Companion.UI.Tools || {};
+
+                // Calculators
+                if (calcs.DueDate) calcs.DueDate.init();
+                if (calcs.Ovulation) calcs.Ovulation.init();
+                if (calcs.SafePeriod) calcs.SafePeriod.init();
+                if (calcs.Weight) calcs.Weight.init();
+                if (calcs.Contraction) calcs.Contraction.init();
+                if (calcs.IVF) calcs.IVF.init();
+                if (calcs.HCG) calcs.HCG.init();
+                if (calcs.Conception) calcs.Conception.init();
+                if (calcs.Biometry) calcs.Biometry.init();
+                if (calcs.WeekTracker) calcs.WeekTracker.init();
+
+                // Tools
+                if (tools.FetalDev) tools.FetalDev.init();
+                if (tools.KickCounter) tools.KickCounter.init();
+                if (tools.PeriodTracker) tools.PeriodTracker.init();
+                if (tools.BishopScore) tools.BishopScore.init();
+                if (tools.VBACCalc) tools.VBACCalc.init();
+                if (tools.BMI) tools.BMI.init();
+                if (tools.BMR) tools.BMR.init();
+                if (tools.TDEE) tools.TDEE.init();
+                if (tools.CalorieGoal) tools.CalorieGoal.init();
+                if (tools.IBW) tools.IBW.init();
+                if (tools.WHR) tools.WHR.init();
+                if (tools.Macros) tools.Macros.init();
+                if (tools.Hydration) tools.Hydration.init();
+                if (tools.BP) tools.BP.init();
+                if (tools.TargetHR) tools.TargetHR.init();
+                if (tools.StopBang) tools.StopBang.init();
+                if (Companion.UI.Premium) Companion.UI.Premium.init();
+
+                console.log("All systems ready.");
+            }
+        });
+
+
+        $(document).on('click', '.site-nav-link', function (e) {
+            e.preventDefault();
+            const pageId = $(this).data('page');
+            if (!pageId) return;
+
+            // Switch active classes in nav
+            $('.site-nav-link').removeClass('active');
+            $(`.site-nav-link[data-page="${pageId}"]`).addClass('active');
+
+            // Switch active pages
+            $('.site-page').removeClass('active');
+            $(`#page-${pageId}`).addClass('active').addClass('reveal-up');
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Close mobile navbar if open
+            const navCollapse = document.getElementById('navbarSupportedContent');
+            if (navCollapse.classList.contains('show')) {
+                bootstrap.Collapse.getInstance(navCollapse).hide();
+            }
+
+            // Trigger module logic if needed
+            if (pageId === 'calendar') Companion.Calendar.render();
+        });
+
+        // Trigger tracker module views
+        $(document).on('click', '.tracker-trigger', function () {
+            const tracker = $(this).data('tracker');
+            // This would normally call Companion.UI.showModule(tracker)
+            // But since we want it localized in the Hub:
+            $('.site-nav-link[data-page="tracker"]').trigger('click');
+        });
+
+        // ---- Profile Page Logic ----
+        function initProfilePage() {
+            const profile = Companion.Data.get('profile');
+            if (!profile) return;
+
+            // Populate summary
+            if (profile.lmp) {
+                $('#profile-lmp-display').text(dayjs(profile.lmp).format('MMMM D, YYYY'));
+                const edd = Companion.Engine.calculateEDD(profile.lmp, profile.cycle);
+                $('#profile-edd-display').text(edd.format('MMMM D, YYYY'));
+                $('#profile-lmp-input').val(profile.lmp);
+            }
+            if (profile.cycle) $('#profile-cycle-input').val(profile.cycle);
+            if (profile.name) $('#profile-name-input').val(profile.name);
+            if (profile.stage) $('#profile-stage-select').val(profile.stage);
+        }
+
+        // Load profile data when navigating to profile page
+        $(document).on('click', '.site-nav-link[data-page="profile"]', function () {
+            setTimeout(initProfilePage, 100);
+        });
+
+        // Save & Recalculate dates
+        $(document).on('click', '#profile-save-dates-btn', function () {
+            const newLmp = $('#profile-lmp-input').val();
+            const newCycle = parseInt($('#profile-cycle-input').val()) || 28;
+
+            if (!newLmp) {
+                Companion.UI.showAlert('Please enter a valid LMP date.', 'warning');
+                return;
+            }
+
+            const profile = Companion.Data.get('profile') || {};
+            profile.lmp = newLmp;
+            profile.cycle = newCycle;
+            Companion.Data.save('profile', profile);
+
+            // Recalculate and update display
+            const edd = Companion.Engine.calculateEDD(newLmp, newCycle);
+            $('#profile-lmp-display').text(dayjs(newLmp).format('MMMM D, YYYY'));
+            $('#profile-edd-display').text(edd.format('MMMM D, YYYY'));
+
+            // Reload dashboard data
+            Companion.Dashboard.loadCompanion(profile);
+
+            Companion.UI.showAlert('✅ Pregnancy dates updated and recalculated!', 'success');
+        });
+
+        // Save personal details
+        $(document).on('click', '#profile-save-details-btn', function () {
+            const profile = Companion.Data.get('profile') || {};
+            profile.name = $('#profile-name-input').val();
+            profile.stage = $('#profile-stage-select').val();
+            Companion.Data.save('profile', profile);
+
+            Companion.UI.showAlert('✅ Profile details saved!', 'success');
+        });
+
+        // Reset Everything
+        $(document).on('click', '#profile-reset-btn', function () {
+            if (!confirm('⚠️ Are you sure? This will delete ALL your data and cannot be undone.')) return;
+
+            // Use common data layer for reset
+            Companion.Data.resetAll();
+
+            // Force reload — page will show landing page/onboarding since no profile exists
+            location.reload();
+        });
+    </script>
+    <script>
+        // Intersection Observer for Reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Once visible, stop observing
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-up').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Interactive Glow Effect for Tool Cards
+        document.addEventListener('mousemove', e => {
+            const cards = document.querySelectorAll('.tool-card-glow');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+
+</html>
