@@ -22,7 +22,7 @@ Companion.UI.Calculators.Ovulation = (function ($) {
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold small text-muted text-uppercase">First Day of Last Period</label>
-                                    <input type="date" class="form-control rounded-3 border-0 shadow-sm" id="calc-ov-lmp">
+                                    <input type="date" required class="form-control rounded-3 border-0 shadow-sm" id="calc-ov-lmp">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold small text-muted text-uppercase">Cycle Length (Days)</label>

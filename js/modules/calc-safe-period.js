@@ -23,7 +23,7 @@ Companion.UI.Calculators.SafePeriod = (function ($) {
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold small text-muted text-uppercase">Last Period Start Date</label>
-                                    <input type="date" class="form-control rounded-3 border-0 shadow-sm" id="calc-safe-lmp">
+                                    <input type="date" required class="form-control rounded-3 border-0 shadow-sm" id="calc-safe-lmp">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold small text-muted text-uppercase">Cycle Length (Days)</label>

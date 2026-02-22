@@ -28,7 +28,7 @@ Companion.UI.Calculators.Conception = (function ($) {
                             </div>
                             <div class="mb-4">
                                 <label class="form-label fw-bold small text-muted text-uppercase" id="calc-conc-date-label">Due Date</label>
-                                <input type="date" class="form-control form-control-lg rounded-3 border-0 shadow-sm" id="calc-conc-date">
+                                <input type="date" required class="form-control form-control-lg rounded-3 border-0 shadow-sm" id="calc-conc-date">
                             </div>
                             <button class="btn btn-teal w-100 rounded-pill py-3 fw-bold text-white shadow-lg animate-button" onclick="Companion.UI.Calculators.Conception.calculate()">
                                 Find Conception Date

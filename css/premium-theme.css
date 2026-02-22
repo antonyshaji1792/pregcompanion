@@ -433,3 +433,62 @@ h2 {
     margin-bottom: 1.5rem;
     font-weight: 800;
 }
+
+/* --- Mobile Navigation Fix --- */
+@media (max-width: 991.98px) {
+    .navbar-premium .navbar-collapse {
+        background: var(--glass-bg);
+        backdrop-filter: blur(25px) saturate(1.8);
+        -webkit-backdrop-filter: blur(25px) saturate(1.8);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--card-shadow);
+        padding: 1.5rem;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .ob-stage-card {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .ob-icon-box {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Form Input Fixes for Mobile --- */
+input[type="date"],
+.premium-input {
+    background-color: #f8f9fa !important;
+    border: 2px solid #e9ecef !important;
+    color: #495057 !important;
+    min-height: 54px;
+    border-radius: var(--radius-md);
+}
+
+input[type="date"] {
+    position: relative;
+    font-family: inherit;
+    /* Ensure native calendar icon is visible and clickable */
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 12px 16px !important;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}

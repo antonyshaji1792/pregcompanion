@@ -29,7 +29,7 @@ Companion.UI.Calculators.WeekTracker = (function ($) {
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label fw-bold small text-muted text-uppercase" id="calc-wt-date-label">LMP Date</label>
-                                    <input type="date" class="form-control rounded-3 border-0 shadow-sm" id="calc-wt-date">
+                                    <input type="date" required class="form-control rounded-3 border-0 shadow-sm" id="calc-wt-date">
                                 </div>
                                 <div class="col-md-3">
                                     <button class="btn btn-purple w-100 rounded-pill fw-bold text-white shadow-sm animate-button" onclick="Companion.UI.Calculators.WeekTracker.calculate()">

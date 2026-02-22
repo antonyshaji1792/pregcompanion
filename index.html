@@ -58,10 +58,16 @@
                 <span class="fs-4 d-none d-sm-inline">PregCompanion</span>
             </a>
 
-            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent">
-                <i class="bi bi-grid-fill fs-3"></i>
-            </button>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn border-0 shadow-none site-nav-link p-2 d-lg-none" data-page="profile"
+                    title="Settings">
+                    <i class="bi bi-gear-fill fs-4 text-secondary"></i>
+                </button>
+                <button class="navbar-toggler border-0 shadow-none p-1" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent">
+                    <i class="bi bi-grid-fill fs-3"></i>
+                </button>
+            </div>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4">
@@ -133,6 +139,10 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link fw-semibold" href="#features-section">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" href="javascript:void(0)"
+                                onclick="Companion.UI.showModule('resources')">Knowledge</a>
                         </li>
                     </ul>
 
@@ -240,9 +250,10 @@
                                                 class="btn btn-lg text-white rounded-pill px-5 py-3 shadow-lg"
                                                 style="background:linear-gradient(135deg,#1976d2,#1565c0);border:none; font-weight: 700;">Explore
                                                 Features</button>
-                                            <button class="btn btn-lg btn-white border rounded-pill px-5 py-3 fw-bold"
+                                            <a href="#tools-section"
+                                                class="btn btn-lg btn-white border rounded-pill px-5 py-3 fw-bold text-decoration-none"
                                                 style="color: #666;">See
-                                                UI Demo</button>
+                                                UI Demo</a>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 d-none d-lg-block">
@@ -730,12 +741,13 @@
         </div>
 
         <!-- wrapper for centered modals -->
-        <div id="ob-modal-wrapper" class="d-flex align-items-center justify-content-center w-100 min-vh-100 d-none"
-            style="padding:2rem; background: radial-gradient(circle at 10% 20%, rgba(255, 159, 178, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(195, 166, 255, 0.05) 0%, transparent 40%);">
+        <div id="ob-modal-wrapper"
+            class="d-flex align-items-center justify-content-center w-100 min-vh-100 d-none p-3 p-md-5"
+            style="background: radial-gradient(circle at 10% 20%, rgba(255, 159, 178, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(195, 166, 255, 0.05) 0%, transparent 40%);">
 
             <!-- Step 2: Stage Selection -->
-            <div class="onboarding-step d-none w-100 glass-card reveal-up" id="ob-step-2"
-                style="max-width:520px; border:none; padding: 2.5rem;">
+            <div class="onboarding-step d-none w-100 glass-card reveal-up p-4 p-md-5" id="ob-step-2"
+                style="max-width:520px; border:none;">
                 <div class="text-center mb-4">
                     <div
                         style="color:#f06292;font-size:.85rem;font-weight:700;letter-spacing:.1em;margin-bottom:.5rem;">
@@ -772,15 +784,19 @@
                         </div>
                     </div>
                 </div>
-                <button onclick="obNext(3)" id="ob-stage-next" class="btn btn-premium w-100 py-3 mt-4"
-                    style="opacity:.5;pointer-events:none;">
-                    Continue <i class="bi bi-arrow-right ms-2"></i>
-                </button>
+                <div class="d-flex gap-3 mt-4">
+                    <button onclick="history.back()"
+                        class="btn btn-light rounded-pill fw-bold py-3 flex-grow-1">Back</button>
+                    <button onclick="obNext(3)" id="ob-stage-next" class="btn btn-premium flex-grow-1 py-3"
+                        style="opacity:.5;pointer-events:none;">
+                        Continue <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Step 3: Dates -->
-            <div class="onboarding-step d-none w-100 glass-card reveal-up" id="ob-step-3"
-                style="max-width:520px; border:none; padding: 2.5rem;">
+            <div class="onboarding-step d-none w-100 glass-card reveal-up p-4 p-md-5" id="ob-step-3"
+                style="max-width:520px; border:none;">
                 <div class="text-center mb-4">
                     <div
                         style="color:#f06292;font-size:.85rem;font-weight:700;letter-spacing:.1em;margin-bottom:.5rem;">
@@ -792,7 +808,7 @@
                     <div id="ob-lmp-group">
                         <label class="fw-bold small poppins text-uppercase tracking-wider mb-2 d-block">First Day of
                             Last Period (LMP)</label>
-                        <input type="date" id="ob-lmp-input" class="form-control premium-input shadow-none"
+                        <input type="date" required id="ob-lmp-input" class="form-control premium-input shadow-none"
                             oninput="obUpdateEDD()">
                         <div id="ob-edd-preview" class="mt-3 p-3 rounded-4"
                             style="background: rgba(255, 159, 178, 0.1); color: #c2185b; display:none;">
@@ -811,12 +827,12 @@
                     <div id="ob-birth-group" class="d-none">
                         <label class="fw-bold small poppins text-uppercase tracking-wider mb-2 d-block">Baby's Birth
                             Date</label>
-                        <input type="date" id="ob-birth-input" class="form-control premium-input shadow-none">
+                        <input type="date" required id="ob-birth-input" class="form-control premium-input shadow-none">
                     </div>
                 </div>
 
                 <div class="d-flex gap-3 mt-5">
-                    <button onclick="obNext(2)"
+                    <button onclick="history.back()"
                         class="btn btn-light rounded-pill fw-bold py-3 flex-grow-1">Back</button>
                     <button onclick="obFinish()" class="btn btn-premium py-3 flex-grow-1">Finish Setup</button>
                 </div>
@@ -932,15 +948,20 @@
             Companion.Data.save('profile', profile);
 
             // Hide onboarding, show app
-            document.getElementById('onboarding-host').classList.add('d-none');
-            document.getElementById('main-content').classList.remove('d-none');
-            document.getElementById('hero-banner').classList.add('d-none');
-            document.getElementById('hero-banner').classList.remove('active');
-            document.getElementById('mainNavbar').classList.remove('d-none');
+            document.getElementById('onboarding-host')?.classList.add('d-none');
+            document.getElementById('main-content')?.classList.remove('d-none');
+            document.getElementById('hero-banner')?.classList.add('d-none');
+            document.getElementById('hero-banner')?.classList.remove('active');
+            document.getElementById('mainNavbar')?.classList.remove('d-none');
             document.querySelector('footer.site-footer')?.classList.remove('d-none');
 
             // Load the dashboard
             Companion.Dashboard.loadCompanion(profile);
+
+            // Update History State to 'home' and clear onboarding history
+            if (Companion.Navigation) {
+                history.replaceState({ type: 'page', page: 'home' }, '');
+            }
         }
     </script>
 
@@ -951,40 +972,40 @@
 
         <!-- HOMEPAGE -->
         <section id="page-home" class="site-page">
-            <div class="site-wrapper pt-5 pb-3" style="padding-top:5rem!important">
+            <div class="site-wrapper pt-4 pb-0" style="padding-top:4rem!important">
                 <div id="alert-host"></div>
-                <div class="d-flex justify-content-between align-items-end mb-4 reveal-up">
+                <div class="d-flex justify-content-between align-items-end mb-2 reveal-up">
                     <div class="d-flex align-items-center gap-3">
                         <div>
                             <div class="subtitle text-accent mb-2">Good Afternoon, <span id="home-user-name">Amma</span>
                             </div>
                             <h1 class="fw-bold mb-0">Your Pregnancy <span class="text-accent">Overview</span></h1>
                         </div>
-                        <button
-                            class="btn btn-soft-primary rounded-circle p-3 d-flex align-items-center justify-content-center site-nav-link"
-                            data-page="profile" style="width: 50px; height: 50px;" title="Settings">
-                            <i class="bi bi-gear-fill fs-4"></i>
-                        </button>
                     </div>
                 </div>
             </div>
 
-            <div class="site-wrapper section-padding">
+            <div class="site-wrapper mt-4 mb-5">
                 <!-- Pregnancy Status & Mini Calendar -->
-                <div class="row g-4 mb-5 reveal-up">
+                <div class="row g-4 mb-4 reveal-up">
                     <div class="col-lg-4">
                         <div class="premium-card p-4 h-100 text-center text-lg-start">
                             <div class="subtitle mb-2">Daily Progress</div>
                             <h3 class="fw-bold mb-3" id="home-gestation-text">14 Weeks 3 Days</h3>
-                            <div class="progress rounded-pill mb-3" style="height: 8px;">
-                                <div id="home-gestation-progress" class="progress-bar bg-primary-rose"
-                                    style="width: 35%"></div>
+                            <div class="progress rounded-pill mb-3 overflow-hidden shadow-sm d-flex"
+                                style="height: 22px; font-size: 0.75rem; border: 1px solid #f8bbd0; background: #fff;">
+                                <div id="home-gestation-progress" class="progress-bar fw-bold"
+                                    style="background: linear-gradient(135deg, #F48FB1, #f06292); width: 0%; transition: width 1s ease;">
+                                </div>
+                                <div id="home-gestation-remaining" class="progress-bar bg-light text-muted fw-bold"
+                                    style="width: 100%; transition: width 1s ease;"></div>
                             </div>
                             <div class="d-flex justify-content-between x-small text-muted">
                                 <span>Conception</span>
                                 <span id="home-edd-display">Due: Oct 24</span>
                             </div>
-                            <div class="mt-4 p-3 bg-soft-rose rounded-20 d-inline-block" id="home-countdown">
+                            <div class="mt-4 p-3 bg-soft-rose rounded-20 d-inline-block" id="home-countdown"
+                                style="width: 260px; max-width: 100%;">
                                 <div class="text-center x-small text-muted">Calculating Journey Time...</div>
                             </div>
                         </div>
@@ -1584,37 +1605,26 @@
             <div class="site-wrapper section-padding">
                 <h2 class="hero-title text-start mb-5 reveal-up">Knowledge <span class="text-accent">Hub.</span></h2>
 
-                <div class="row g-4 reveal-up">
-                    <div class="col-md-6">
-                        <div class="premium-card p-0 overflow-hidden h-100">
-                            <div style="height: 240px; background: var(--primary-rose-soft);"
-                                class="d-flex align-items-center justify-content-center">
-                                <i class="bi bi-egg-fried text-primary-rose" style="font-size: 4rem;"></i>
-                            </div>
-                            <div class="p-4">
-                                <h4 class="fw-bold">Healthy Eating Guide</h4>
-                                <p class="text-muted small">Discover the essential vitamins and nutrients you need for a
-                                    healthy pregnancy.</p>
-                                <button class="btn btn-link p-0 text-accent fw-bold text-decoration-none">Read Article
-                                    <i class="bi bi-arrow-right"></i></button>
-                            </div>
-                        </div>
+                <div class="search-container mb-5 reveal-up">
+                    <div class="premium-card p-2 border-0 shadow-sm rounded-pill d-flex align-items-center bg-white">
+                        <i class="bi bi-search ms-3 me-2 text-muted"></i>
+                        <input type="text" id="knowledge-search-input"
+                            class="form-control border-0 bg-transparent shadow-none"
+                            placeholder="Search for articles (e.g. breastfeeding, scans, recovery...)"
+                            onkeyup="Companion.UI.searchArticles(this.value)">
                     </div>
-                    <div class="col-md-6">
-                        <div class="premium-card p-0 overflow-hidden h-100">
-                            <div style="height: 240px; background: var(--accent-blue-soft);"
-                                class="d-flex align-items-center justify-content-center">
-                                <i class="bi bi-wind text-accent" style="font-size: 4rem;"></i>
-                            </div>
-                            <div class="p-4">
-                                <h4 class="fw-bold">Yoga & Breathing</h4>
-                                <p class="text-muted small">Gentle exercises and meditation techniques to keep you calm
-                                    and flexible.</p>
-                                <button class="btn btn-link p-0 text-accent fw-bold text-decoration-none">Read Article
-                                    <i class="bi bi-arrow-right"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+
+                <div class="row g-4 reveal-up" id="resources-hub-grid">
+                    <!-- Dynamic Grid Root -->
+                </div>
+
+                <!-- Knowledge Hub Overlay -->
+                <div id="resources-module-overlay" class="mt-5 pt-5 d-none">
+                    <button class="btn btn-link text-dark p-0 mb-4" id="close-resources-overlay">
+                        <i class="bi bi-arrow-left me-2"></i>Back to Knowledge Hub
+                    </button>
+                    <div id="resources-module-content-host"></div>
                 </div>
             </div>
         </section>
@@ -1661,7 +1671,7 @@
                             Dates</h5>
                         <div class="mb-3">
                             <label class="form-label small fw-bold">Last Menstrual Period (LMP)</label>
-                            <input type="date" class="form-control rounded-pill px-4" id="profile-lmp-input">
+                            <input type="date" required class="form-control rounded-pill px-4" id="profile-lmp-input">
                             <div class="form-text x-small">Your due date will be automatically recalculated.</div>
                         </div>
                         <div class="mb-4">
@@ -1967,18 +1977,6 @@
                 <button class="btn btn-info rounded-pill px-4 text-white">Add New Photo</button>
             </div>
         </div>
-
-        <!-- Birth Plan Module -->
-        <div id="module-birth-plan" class="companion-module d-none">
-            <h3 class="fw-bold mb-4">Birth Plan</h3>
-            <div class="premium-card p-4 text-center py-5">
-                <i class="bi bi-stars display-1 text-accent mb-3 opacity-50"></i>
-                <h5 class="fw-bold text-dark">Design Your Experience</h5>
-                <p class="text-muted small mb-4">Define your preferences for labor, delivery, and newborn care to share
-                    with your medical team.</p>
-                <button class="btn btn-premium rounded-pill px-4">Create Birth Plan</button>
-            </div>
-        </div>
     </div>
 
     <!-- Scripts -->
@@ -1989,6 +1987,9 @@
     <script>dayjs.extend(window.dayjs_plugin_isBetween)</script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Data Repository -->
+    <script src="js/data/knowledge-base.js"></script>
 
     <!-- Core Logic -->
     <script src="js/calculator.js"></script>
@@ -2045,9 +2046,13 @@
     <script src="js/modules/tool-stop-bang.js"></script>
     <script src="js/modules/calc-safe-period.js"></script>
     <script src="js/modules/premium-ui.js"></script>
+    <script src="js/modules/navigation-handler.js"></script>
 
     <script>
         $(document).ready(function () {
+            // Initialize Navigation Management for Back Button Support
+            if (Companion.Navigation) Companion.Navigation.init();
+
             console.log("Initializing Free Tools & Calculators...");
             // Initialize All Feature Modules
             if (Companion.UI) {

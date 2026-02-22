@@ -44,6 +44,15 @@
     --shadow-premium: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
+/* Explicit Dark Mode Overrides for Bootstrap Defaults */
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .navbar-brand {
+    color: var(--text-main) !important;
+}
+
 /* --- Animated Background Blobs --- */
 .bg-blobs {
     position: fixed;
@@ -538,18 +547,19 @@ body {
     display: flex;
     gap: 20px;
     overflow-x: auto;
-    padding: 20px 4px 40px;
+    padding: 20px 24px 40px; /* Increased side padding for better scroll end */
+    margin: 0 -24px; /* Pull to edges of site-wrapper */
     scrollbar-width: none;
-    /* Hide scrollbar Firefox */
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .scroll-container::-webkit-scrollbar {
     display: none;
-    /* Hide scrollbar Chrome/Safari */
 }
 
 .event-card {
-    min-width: 280px;
+    flex: 0 0 280px; /* Force size and prevent shrinking */
     background: var(--card-bg);
     border-radius: var(--border-radius-md);
     padding: 24px;
@@ -565,7 +575,7 @@ body {
 
 .tile-btn {
     padding: 30px 20px;
-    background: white;
+    background: var(--card-bg);
     border-radius: 24px;
     display: flex;
     flex-direction: column;
@@ -580,7 +590,7 @@ body {
 
 .tile-btn:hover {
     transform: translateY(-8px);
-    background: white;
+    background: var(--card-bg);
     border-color: rgba(244, 143, 177, 0.2);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
 }

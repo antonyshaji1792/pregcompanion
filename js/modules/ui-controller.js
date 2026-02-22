@@ -69,15 +69,14 @@ Companion.UI = (function () {
         },
 
         toggleTheme: function () {
-            const current = $('body').attr('data-theme');
-            const target = current === 'dark' ? 'light' : 'dark';
-            $('body').attr('data-theme', target);
-            Companion.Data.save('user_theme', target);
+            if (Companion.UI.Premium) {
+                const current = localStorage.getItem('pref_theme_mode') || 'auto';
+                Companion.UI.Premium.setTheme(current === 'auto' ? 'light' : (current === 'light' ? 'dark' : 'auto'));
+            }
         },
 
         initTheme: function () {
-            const saved = Companion.Data.get('user_theme', 'light');
-            $('body').attr('data-theme', saved);
+            // Handled entirely by Companion.UI.Premium.initTheme()
         },
 
         setLifeStage: function (stage) {
@@ -111,32 +110,47 @@ Companion.UI = (function () {
                 // Show the onboarding screen, hide everything else
                 $('#onboarding-host').removeClass('d-none');
                 $('#main-content').addClass('d-none');
-                $('nav.top-nav').addClass('d-none');
+                $('#mainNavbar').addClass('d-none');
                 $('footer.site-footer').addClass('d-none');
             } else if (primaryPages.includes(moduleName)) {
                 // Ensure main content is visible
                 $('#onboarding-host').addClass('d-none');
                 $('#main-content').removeClass('d-none');
-                $('nav.top-nav').removeClass('d-none');
+                $('#mainNavbar').removeClass('d-none');
                 $('footer.site-footer').removeClass('d-none');
                 // If the user wants to go to a primary page, trigger the nav link
                 $(`.site-nav-link[data-page="${moduleName}"]`).first().trigger('click');
+
+                if (moduleName === 'resources') this.renderKnowledgeHub();
             } else {
-                // It's a sub-module (e.g., 'health', 'lab', 'journal')
-                // We show the tracker page hub first, then swap the grid for the active module
-                $('.site-page').removeClass('active');
-                $('#page-tracker').addClass('active');
+                // It's a sub-module (e.g., 'health', 'lab', 'journal', 'article-eating')
+                const currentPageId = $('.site-page.active').attr('id');
 
-                $('#tracker-hub-grid').addClass('d-none');
-                $('#module-overlay').removeClass('d-none');
+                if (currentPageId === 'page-resources' || moduleName.startsWith('article-')) {
+                    // Knowledge Hub Context
+                    $('#resources-hub-grid').addClass('d-none');
+                    $('#resources-module-overlay').removeClass('d-none');
 
-                // Show the specific sub-module
-                $('.companion-module').addClass('d-none');
-                $(`#module-${moduleName}`).removeClass('d-none');
+                    // Check if it's a dynamic article
+                    if (moduleName.startsWith('article-')) {
+                        this.renderArticleDetail(moduleName);
+                    } else {
+                        $('.companion-module').addClass('d-none');
+                        $(`#module-${moduleName}`).removeClass('d-none').appendTo('#resources-module-content-host');
+                    }
+                } else {
+                    // Tracker/Default Context
+                    $('.site-page').removeClass('active');
+                    $('#page-tracker').addClass('active');
 
-                // If it's the first time, we might need to move the module DOM 
-                // but for now assume they are already there or injected.
-                $(`#module-${moduleName}`).appendTo('#module-content-host');
+                    $('#tracker-hub-grid').addClass('d-none');
+                    $('#module-overlay').removeClass('d-none');
+
+                    // Show the specific sub-module
+                    $('.companion-module').addClass('d-none');
+                    $(`#module-${moduleName}`).removeClass('d-none');
+                    $(`#module-${moduleName}`).appendTo('#module-content-host');
+                }
             }
 
             // Scroll to top
@@ -151,6 +165,74 @@ Companion.UI = (function () {
             if (moduleName === 'lab') this.renderLabVaultUI();
             if (moduleName === 'hospital-bag') this.renderHospitalBagUI();
             if (moduleName === 'insights' || moduleName === 'health') this.renderInsights();
+        },
+
+        searchArticles: function (query) {
+            query = query.toLowerCase().trim();
+            this.renderKnowledgeHub(query);
+        },
+
+        renderKnowledgeHub: function (searchQuery = '') {
+            const grid = $('#resources-hub-grid');
+            if (grid.children().length > 0 && !searchQuery) return; // Only render once unless searching
+
+            let html = '';
+            KnowledgeBase.categories.forEach(cat => {
+                const filteredArticles = cat.articles.filter(a =>
+                    a.cardTitle.toLowerCase().includes(searchQuery) ||
+                    a.cardDesc.toLowerCase().includes(searchQuery)
+                );
+
+                if (filteredArticles.length > 0) {
+                    html += `<h3 class="fw-bold mt-5 mb-4 reveal-up">${cat.title}</h3><div class="row g-4 reveal-up">`;
+                    filteredArticles.forEach(art => {
+                        html += `
+                            <div class="col-md-6 col-lg-4">
+                                <div class="premium-card p-0 overflow-hidden h-100">
+                                    <div style="height: 200px; background: ${art.bgColor};" class="d-flex align-items-center justify-content-center">
+                                        <i class="bi ${art.icon} ${art.iconClass}" style="font-size: 3rem;"></i>
+                                    </div>
+                                    <div class="p-4">
+                                        <h4 class="fw-bold">${art.cardTitle}</h4>
+                                        <p class="text-muted small">${art.cardDesc}</p>
+                                        <button class="btn btn-link p-0 text-accent fw-bold text-decoration-none"
+                                            onclick="Companion.UI.showModule('${art.id}')">Read Article
+                                            <i class="bi bi-arrow-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>`;
+                    });
+                    html += `</div>`;
+                }
+            });
+
+            grid.html(html || '<div class="col-12 text-center py-5 text-muted">No articles found matching your search.</div>');
+        },
+
+        renderArticleDetail: function (articleId) {
+            let article = null;
+            KnowledgeBase.categories.forEach(cat => {
+                const found = cat.articles.find(a => a.id === articleId);
+                if (found) article = found;
+            });
+
+            if (!article) return;
+
+            const html = `
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <h2 class="fw-bold mb-3">${article.detail.title}</h2>
+                        <p class="lead text-muted mb-4">${article.detail.lead}</p>
+                        <div class="article-content">${article.detail.contentHtml}</div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="premium-card p-4 sticky-top" style="top: 100px;">
+                            ${article.detail.sidebarHtml}
+                        </div>
+                    </div>
+                </div>`;
+
+            $('#resources-module-content-host').html(html);
         },
 
         countdownInterval: null,
@@ -174,12 +256,13 @@ Companion.UI = (function () {
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
                 const html = `
-                    <div class="d-flex gap-2">
+                    <div class="d-flex gap-2 justify-content-center">
                         <div class="text-center"><div class="fw-bold">${days}d</div><div class="x-small opacity-50">DAYS</div></div>
                         <div class="text-center"><div class="fw-bold">${hours}h</div><div class="x-small opacity-50">HRS</div></div>
                         <div class="text-center"><div class="fw-bold">${minutes}m</div><div class="x-small opacity-50">MIN</div></div>
                         <div class="text-center"><div class="fw-bold text-accent">${seconds}s</div><div class="x-small opacity-50">SEC</div></div>
                     </div>
+                    <div class="text-center mt-2 fw-bold text-muted" style="font-size: 0.65rem; letter-spacing: 0.1em;">REMAINING DAYS</div>
                 `;
                 $('#home-countdown').html(html);
             };
@@ -196,7 +279,13 @@ Companion.UI = (function () {
             if (stage === 'pregnancy') {
                 $('#home-gestation-text').text(`${data.gestation.weeks} Weeks ${data.gestation.days} Days`);
                 $('#home-edd-display').text(`Due: ${data.edd}`);
-                $('#home-gestation-progress').css('width', `${Math.min(100, data.gestation.progress)}%`);
+                const progressVal = Math.round(Math.min(100, data.gestation.progress));
+                $('#home-gestation-progress')
+                    .css('width', `${progressVal}%`)
+                    .text(progressVal > 10 ? `${progressVal}%` : '');
+                $('#home-gestation-remaining')
+                    .css('width', `${100 - progressVal}%`)
+                    .text((100 - progressVal) > 10 ? `${100 - progressVal}%` : '');
 
                 // Start live countdown
                 const profile = Companion.Data.get('profile');
@@ -259,8 +348,13 @@ Companion.UI = (function () {
                 $('#home-gestation-text').text(`Day ${cycleDay}`);
                 $('#home-edd-display').text(`Next Period: ${nextPeriod.format('MMM D')}`);
 
-                const progress = Math.min(100, (cycleDay / (Companion.Data.get('profile').cycle || 28)) * 100);
-                $('#home-gestation-progress').css('width', `${progress}%`);
+                const progressVal = Math.round(Math.min(100, (cycleDay / (Companion.Data.get('profile').cycle || 28)) * 100));
+                $('#home-gestation-progress')
+                    .css('width', `${progressVal}%`)
+                    .text(progressVal > 10 ? `${progressVal}%` : '');
+                $('#home-gestation-remaining')
+                    .css('width', `${100 - progressVal}%`)
+                    .text((100 - progressVal) > 10 ? `${100 - progressVal}%` : '');
             }
 
             // 1. Next Appointment

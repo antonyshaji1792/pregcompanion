@@ -21,7 +21,7 @@ Companion.UI.Calculators.DueDate = (function ($) {
                         <div class="calculator-inputs">
                             <div class="mb-3">
                                 <label class="form-label fw-bold small text-muted text-uppercase">First Day of Last Period</label>
-                                <input type="date" class="form-control form-control-lg rounded-3 border-0 shadow-sm" id="calc-dd-lmp">
+                                <input type="date" required class="form-control form-control-lg rounded-3 border-0 shadow-sm" id="calc-dd-lmp">
                             </div>
                             <div class="mb-4">
                                 <label class="form-label fw-bold small text-muted text-uppercase">Average Cycle Length (Days)</label>

@@ -18,22 +18,44 @@ Companion.UI.Premium = (function ($) {
 
         // --- Theme Management ---
         initTheme: function () {
-            const savedTheme = localStorage.getItem(THEME_KEY) || 'light';
+            const savedTheme = localStorage.getItem(THEME_KEY) || 'auto';
             this.setTheme(savedTheme);
 
             $(document).on('click', '.theme-toggle', () => {
-                const current = $('html').attr('data-theme');
-                const next = current === 'dark' ? 'light' : 'dark';
+                const current = localStorage.getItem(THEME_KEY) || 'auto';
+                let next;
+                if (current === 'auto') next = 'light';
+                else if (current === 'light') next = 'dark';
+                else next = 'auto';
                 this.setTheme(next);
             });
+
+            // Check every minute if we're in auto mode and the time flips day/night
+            setInterval(() => {
+                if ((localStorage.getItem(THEME_KEY) || 'auto') === 'auto') {
+                    this.setTheme('auto');
+                }
+            }, 60000);
         },
 
-        setTheme: function (theme) {
-            $('html').attr('data-theme', theme);
-            localStorage.setItem(THEME_KEY, theme);
+        setTheme: function (themePreference) {
+            localStorage.setItem(THEME_KEY, themePreference);
 
-            // Update icons if present
-            const icon = theme === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars-fill';
+            let actualTheme = themePreference;
+            if (themePreference === 'auto') {
+                const hour = new Date().getHours();
+                // 6 AM (6) to 6 PM (18) is light, else dark
+                actualTheme = (hour >= 6 && hour < 18) ? 'light' : 'dark';
+            }
+
+            $('html').attr('data-theme', actualTheme);
+            $('body').attr('data-theme', actualTheme);
+
+            // Update icons if present based on preference mode
+            let icon = 'bi-circle-half';
+            if (themePreference === 'light') icon = 'bi-sun-fill';
+            if (themePreference === 'dark') icon = 'bi-moon-stars-fill';
+
             $('.theme-toggle i').attr('class', `bi ${icon}`);
         },
 

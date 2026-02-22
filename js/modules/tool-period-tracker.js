@@ -26,7 +26,7 @@ Companion.UI.Tools.PeriodTracker = (function ($) {
                                     
                                     <div class="mb-3">
                                         <label class="form-label small fw-bold">Last Period Start</label>
-                                        <input type="date" class="form-control border-0 bg-light rounded-3" id="period-last-date">
+                                        <input type="date" required class="form-control border-0 bg-light rounded-3" id="period-last-date">
                                     </div>
                                     
                                     <div class="mb-4">

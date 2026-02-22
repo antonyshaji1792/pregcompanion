@@ -21,7 +21,7 @@ Companion.UI.Calculators.IVF = (function ($) {
                         <div class="calculator-inputs">
                             <div class="mb-3">
                                 <label class="form-label fw-bold small text-muted text-uppercase">Embryo Transfer Date</label>
-                                <input type="date" class="form-control form-control-lg rounded-3 border-0 shadow-sm" id="calc-ivf-transfer">
+                                <input type="date" required class="form-control form-control-lg rounded-3 border-0 shadow-sm" id="calc-ivf-transfer">
                             </div>
                             <div class="mb-4">
                                 <label class="form-label fw-bold small text-muted text-uppercase">Embryo Age</label>
