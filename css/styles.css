@@ -547,8 +547,10 @@ body {
     display: flex;
     gap: 20px;
     overflow-x: auto;
-    padding: 20px 24px 40px; /* Increased side padding for better scroll end */
-    margin: 0 -24px; /* Pull to edges of site-wrapper */
+    padding: 20px 24px 40px;
+    /* Increased side padding for better scroll end */
+    margin: 0 -24px;
+    /* Pull to edges of site-wrapper */
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
@@ -559,7 +561,8 @@ body {
 }
 
 .event-card {
-    flex: 0 0 280px; /* Force size and prevent shrinking */
+    flex: 0 0 280px;
+    /* Force size and prevent shrinking */
     background: var(--card-bg);
     border-radius: var(--border-radius-md);
     padding: 24px;
@@ -1376,6 +1379,25 @@ body {
     .calendar-day-v2 {
         font-size: 0.95rem;
         border-radius: 12px;
+    }
+
+    .custom-timeline-table {
+        font-size: 0.85rem;
+    }
+
+    .custom-timeline-table th,
+    .custom-timeline-table td {
+        padding: 10px 12px !important;
+        white-space: nowrap;
+    }
+
+    .custom-timeline-table th {
+        font-size: 0.75rem;
+    }
+
+    .custom-timeline-table td:last-child {
+        white-space: normal;
+        min-width: 180px;
     }
 }
 
