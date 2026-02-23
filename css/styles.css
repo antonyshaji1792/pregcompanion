@@ -1347,6 +1347,36 @@ body {
     .modal-body {
         padding: 1.5rem !important;
     }
+
+    .calendar-wrapper {
+        padding: 25px 15px;
+    }
+
+    .calendar-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .calendar-header .d-flex {
+        justify-content: center;
+        width: 100%;
+    }
+
+    #cal-month-year {
+        font-size: 2rem !important;
+        text-align: center;
+    }
+
+    .month-grid {
+        gap: 6px;
+    }
+
+    .calendar-day-v2 {
+        font-size: 0.95rem;
+        border-radius: 12px;
+    }
 }
 
 
