@@ -1399,6 +1399,15 @@ body {
         white-space: normal;
         min-width: 180px;
     }
+
+    .calendar-wrapper .row.mb-4.text-center .col {
+        padding: 0 2px;
+        font-size: 0.65rem;
+    }
+
+    .calendar-wrapper .ls-wider {
+        letter-spacing: 0 !important;
+    }
 }
 
 
